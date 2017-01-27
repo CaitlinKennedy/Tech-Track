@@ -1,5 +1,4 @@
-# CS307_Group-27
-
+Tech-Track: CS307 Group 27
 
 Problem Statement:
 As students enter the Purdue Computer Science program, many begin coursework with limited or no prior experience. Therefore, students often have little knowledge about what concentrations or research areas they would like to explore. As a solution, we will develop a web-based game that will introduce students to problems from a variety of courses and computer science topics. Currently, there are limited resources to explore course content, therefore, this game will be a unique and visual solution. 
