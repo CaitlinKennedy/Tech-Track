@@ -7,3 +7,10 @@ from flask import render_template
 @app.route('/hello/<name>')
 def hello(name=None):
     return render_template('hello.html', name=name)
+
+
+
+@app.route('/pixihello/')
+@app.route('/pixihello/<name>')
+def pixihello(name=None):
+    return render_template('pixihello.html', name=name)
