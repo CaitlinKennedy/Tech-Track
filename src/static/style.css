@@ -108,6 +108,50 @@ a{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	color: #c12d22;
 }
+
+.instD{
+	background-color: #7f1c15;
+	margin: 2em;
+	padding: 1em;
+}
+
+.instH{
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+	color: white;
+
+}
+
+.inst{
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+	color: white;
+	margin-left: 3em;
+	margin-right: 3em;
+}
+
+#playGame{
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+	background-color: #c12d22;
+	color: white;
+	width: 50%;
+	display: block;
+	text-align: center;
+	font-size: 3em;
+	margin:0 auto;
+	margin-bottom: 3em;
+}
+
+#playGame:hover{
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+	background-color: #7f1c15;
+	color: white;
+	width: 50%;
+	font-size: 3em;
+	display: block;
+	text-align: center;
+	margin:0 auto;
+	margin-bottom: 3em;
+}
+
 h1{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	color: #c12d22;

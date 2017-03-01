@@ -24,6 +24,11 @@ def index():
 		return 'Logged in as %s' % escape(session['username'])
 	return 'You are not logged in.'
 
+
+@app.route('/instructions')
+def instructions():
+	return render_template('instructions.html')
+
 #Login Page
 #Default route only answers to GET requests.
 #Can change this by providing methods argument to the route() decorator.
