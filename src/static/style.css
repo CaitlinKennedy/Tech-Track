@@ -28,7 +28,7 @@ h2{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	margin-top: 2em;
 	text-align: center;
-	color: #d6370e;
+	color: #c12d22;
 	font-size: 40px;
 	margin-bottom: 10px;
 }
@@ -43,8 +43,8 @@ input[type="text"]{
 	margin-bottom: 20px;
 	background-color: #e2b7ac;
 	text-align: left;
-	color: #d6370e; 
-	border: .1em solid #d6370e;
+	color: #c12d22; 
+	border: .1em solid #c12d22;
 	border-radius: 4px;
 	padding: .5em;
 }
@@ -58,8 +58,8 @@ input[type="password"]{
 	margin-bottom: 5px;
 	background-color: #e2b7ac;
 	text-align: left;
-	color: #d6370e;
-	border: .1em solid #d6370e;
+	color: #c12d22;
+	border: .1em solid #c12d22;
 	border-radius: 4px;
 	padding: .5em;
 }
@@ -73,7 +73,7 @@ input[type="password"]:focus {
 input[type="submit"]{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	margin-top: 1em;
-	background-color: #d6370e;
+	background-color: #c12d22;
     border: none;
     color: white;
     margin: 4px 2px;
@@ -84,33 +84,33 @@ input[type="submit"]{
 	
 }
 *::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color: #d6370e;
+    color: #c12d22;
 }
 *:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color: #d6370e;
+   color: #c12d22;
    opacity:  1;
 }
 *::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color: #d6370e;
+   color: #c12d22;
    opacity:  1;
 }
 *:-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color: #d6370e;
+   color: #c12d22;
 }
 .error{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	text-align: center;
 	font-size: 18px;
-	color: #d6370e;
+	color: #c12d22;
 	/*background-color: rgba(255, 0, 0, 0.9);*/
 }
 a{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
-	color: #d6370e;
+	color: #c12d22;
 }
 h1{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
-	color: #d6370e;
+	color: #c12d22;
 	text-align: center;
 	position: relative;
 	font-size: 80px;
