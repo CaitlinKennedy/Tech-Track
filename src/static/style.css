@@ -1,7 +1,7 @@
 body{
 	
 	margin: 0 auto;
-	background-image: url("loginpic.png");
+	background-color: #efd6d0;
 	background-repeat: no-repeat;
 	background-size: 100% 770px;
 }
@@ -11,56 +11,106 @@ body{
 	width: 500px;
 	height: 220px;
 	text-align: center;
-	background-color: rgba(52, 73, 94, 0.7); 
+	/*background-color: rgba(52, 73, 94, 0.7); */
 	border-radius: 4px;
 	margin: 0 auto;
+	color: white;
 	
 }
+
+img {
+	margin: auto;
+	margin-top: 3em;
+	width: 50%;
+	display: block;
+}
 h2{
-	margin-top: 250px;
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+	margin-top: 2em;
 	text-align: center;
-	color: white;
+	color: #d6370e;
 	font-size: 40px;
 	margin-bottom: 10px;
 }
 
 input[type="text"]{
 
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	margin-top: 20px;
-	height: 45px;
+	height: 1em;
 	width: 300px;
-	font-size: 18px;
+	font-size: 2em;
 	margin-bottom: 20px;
-	background-color: #fff;
-	text-align: center;
-	
+	background-color: #e2b7ac;
+	text-align: left;
+	color: #d6370e; 
+	border: .1em solid #d6370e;
+	border-radius: 4px;
+	padding: .5em;
 }
 
 input[type="password"]{
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
     margin-top: 1px;
-	height: 45px;
+	height: 1em;
 	width: 300px;
-	font-size: 18px;
+	font-size: 2em;
 	margin-bottom: 5px;
-	background-color: #fff;
-	text-align: center;
+	background-color: #e2b7ac;
+	text-align: left;
+	color: #d6370e;
+	border: .1em solid #d6370e;
+	border-radius: 4px;
+	padding: .5em;
 }
+input[type="text"]:focus {
+    border: .2em solid #555;
+}
+input[type="password"]:focus {
+    border: .2em solid #555;
+}
+
 input[type="submit"]{
-	margin-top: 5px;
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+	margin-top: 1em;
+	background-color: #d6370e;
+    border: none;
+    color: white;
+    margin: 4px 2px;
+    font-size: 1em;
+    padding: 1em;
 	text-align: center;
+	width: 30%;
+	
+}
+*::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #d6370e;
+}
+*:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #d6370e;
+   opacity:  1;
+}
+*::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: #d6370e;
+   opacity:  1;
+}
+*:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #d6370e;
 }
 .error{
-
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	text-align: center;
 	font-size: 18px;
-	color: #ff0000;
+	color: #d6370e;
 	/*background-color: rgba(255, 0, 0, 0.9);*/
 }
 a{
-	color: white;
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+	color: #d6370e;
 }
 h1{
-	color: white;
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+	color: #d6370e;
 	text-align: center;
 	position: relative;
 	font-size: 80px;
