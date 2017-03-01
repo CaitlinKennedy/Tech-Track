@@ -1,0 +1,67 @@
+body{
+	
+	margin: 0 auto;
+	background-image: url("loginpic.png");
+	background-repeat: no-repeat;
+	background-size: 100% 770px;
+}
+
+.inputbackground{
+
+	width: 500px;
+	height: 220px;
+	text-align: center;
+	background-color: rgba(52, 73, 94, 0.7); 
+	border-radius: 4px;
+	margin: 0 auto;
+	
+}
+h2{
+	margin-top: 250px;
+	text-align: center;
+	color: white;
+	font-size: 40px;
+	margin-bottom: 10px;
+}
+
+input[type="text"]{
+
+	margin-top: 20px;
+	height: 45px;
+	width: 300px;
+	font-size: 18px;
+	margin-bottom: 20px;
+	background-color: #fff;
+	text-align: center;
+	
+}
+
+input[type="password"]{
+    margin-top: 1px;
+	height: 45px;
+	width: 300px;
+	font-size: 18px;
+	margin-bottom: 5px;
+	background-color: #fff;
+	text-align: center;
+}
+input[type="submit"]{
+	margin-top: 5px;
+	text-align: center;
+}
+.error{
+
+	text-align: center;
+	font-size: 18px;
+	color: #ff0000;
+	/*background-color: rgba(255, 0, 0, 0.9);*/
+}
+a{
+	color: white;
+}
+h1{
+	color: white;
+	text-align: center;
+	position: relative;
+	font-size: 80px;
+}
