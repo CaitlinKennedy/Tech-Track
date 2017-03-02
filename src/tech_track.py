@@ -54,9 +54,39 @@ def login():
 		else:
 			#Session.
 			session['username'] = request.form['username']
-			return redirect(url_for('index'))
+			return redirect(url_for('instructions'))
 
 	return render_template('login.html', error=error)
+
+
+#Register. 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    error = None
+    if request.method == 'POST':
+        emailAccount = request.form['username']
+        password = request.form['password']
+
+        conn = mysql.connect()
+        cursor = conn.cursor()
+    
+        cursor.execute("SELECT * from Users where emailAccount='" + emailAccount + "'")
+        data = cursor.fetchone()
+        if data is None:
+            #this password is unique so add it to the database
+            cursor.execute('''INSERT INTO Users (emailAccount, password, isNewUser, cs180Completed, cs240Completed, cs250Completed, cs251Completed, cs314Completed, cs334Completed, cs381Completed, cs307Completed, cs448Completed, cs456Completed, cs442Completed, cs426Completed) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',(emailAccount, password, True, False, False, False, False, False, False, False, False, False, False, False, False))
+            conn.commit()
+
+            session['username'] = request.form['username']
+
+            return redirect(url_for('instructions'))
+        else: 
+            error = "Username is already in use."
+
+    #return "You are already registered" #render html for register page and send error message
+    return render_template('createAccount.html', error=error) 
+
+
 
 #Logout
 @app.route('/logout')
