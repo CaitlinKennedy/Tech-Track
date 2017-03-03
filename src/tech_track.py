@@ -27,7 +27,9 @@ def index():
 
 @app.route('/instructions')
 def instructions():
-	return render_template('instructions.html')
+	if 'username' in session:
+		return render_template('instructions.html')
+	return redirect(url_for('login'))
 
 #Login Page
 #Default route only answers to GET requests.
