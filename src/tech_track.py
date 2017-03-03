@@ -67,6 +67,12 @@ def register():
         emailAccount = request.form['username']
         password = request.form['password']
 
+        splitDomainName = emailAccount.split('@')[1]
+        if (splitDomainName != 'purdue.edu'):
+        	error = "You should use a Purdue email."
+    		return render_template('createAccount.html', error=error) 
+        
+
         conn = mysql.connect()
         cursor = conn.cursor()
     
