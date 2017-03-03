@@ -21,9 +21,9 @@ mysql.init_app(app)
 @app.route('/')
 def index():
 	if 'username' in session:
-		return 'Logged in as %s' % escape(session['username'])
-	return 'You are not logged in.'
-
+		return redirect(url_for('instructions'))
+	return redirect(url_for('login'))
+	
 
 @app.route('/instructions')
 def instructions():

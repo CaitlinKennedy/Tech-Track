@@ -159,3 +159,17 @@ h1{
 	position: relative;
 	font-size: 80px;
 }
+
+.logout{
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+	background-color: #c12d22;
+	color: white;
+	width: 20%;
+	display: block;
+	text-align: center;
+	font-size: 3em;
+	margin:0 auto;
+	margin-bottom: .5em;
+	margin-top: .5em;
+	margin-left: 23em;
+}
