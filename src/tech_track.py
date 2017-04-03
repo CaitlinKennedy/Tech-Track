@@ -102,5 +102,12 @@ def logout():
 	session.pop('username', None)
 	return redirect(url_for('index'))
 
+
+@app.route('/levels')
+def levels(): 
+	if 'username' in session:
+		return render_template('hallway.html')
+	return redirect(url_for('login'))
+
 #Secret Key
 app.secret_key = 'A0Zr98j/3yX R~'

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tech Track</title>
+
+	<!--style.cc is in the static folder-->
+	<link rel="stylesheet" type="text/css" href="/static/hallwayStyle.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+</head>
+<script src="static/pixi.min.js"></script>
+<body>
+	<script type="text/javascript">
+		var renderer = PIXI.autoDetectRenderer(1000, 1000, {antialias: false, transparent: false, resolution: 1});
+		document.body.appendChild(renderer.view);
+		var stage = new PIXI.Container();
+		
+
+		PIXI.loader
+		  .add([
+		    "static/Images/wall.png",
+		    "static/Images/donotenter.png",
+		    "static/Images/door.png",
+		    "static/Images/floor.png",
+		    "static/Images/emptypedestal.png",
+		  	"static/Images/girl.png",
+		  	"static/Images/starting.png",
+		  	"static/Images/completed.png",
+		  	"static/Images/pedestal.png"
+		  ])
+		  .load(setup);
+
+
+		renderer.render(stage);
+		renderer.view.style.position = "absolute";
+		renderer.view.style.display = "block";
+		renderer.autoResize = true;
+		renderer.resize(window.innerWidth, window.innerHeight);
+
+		function setup() {
+				//change to some request
+			var obj = {
+				level: 1,
+				classes: [
+					{
+						name: "CS 307", 
+						status: 0
+					}, 
+					{
+						name:"CS 314", 
+						status:0
+					}, 
+					{
+						name:"CS 381",
+						status:1
+					}, 
+					{
+						name:"CS 334", 
+						status:2
+					}, 
+				]
+			}
+			//var results = JSON.stringify();
+			//var classes = JSON.parse(results)
+		 	var girl = new PIXI.Sprite(
+		    	PIXI.loader.resources["static/Images/girl.png"].texture
+			);
+			var wall = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/wall.png"].texture
+			);
+			var donotenter = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/donotenter.png"].texture
+			);
+			var door1 = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/door.png"].texture
+			);
+			var door2 = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/door.png"].texture
+			);
+			var door3 = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/door.png"].texture
+			);
+			var door4 = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/door.png"].texture
+			);
+			var floor = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/floor.png"].texture
+			);
+			var emptypedestal = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/emptypedestal.png"].texture
+			);
+			var starting = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/starting.png"].texture
+			);
+			var completed = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/completed.png"].texture
+			);
+			var pedestal = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/pedestal.png"].texture
+			);
+
+			var status1;
+			var status2;
+			var status3;
+			var status4;
+			var stat = new Array()
+			stat.push(status1)
+			stat.push(status2)
+			stat.push(status3)
+			stat.push(status4)
+
+			w = window.innerWidth
+			h = window.innerHeight
+						
+			console.log("h: ", h)
+
+			wall.width = w + 50
+			wall.height = h/2 + 150
+			wall.y = -40
+			wall.x = -20
+			floor.width = w  + 50
+			floor.height = h/2 + 100
+			floor.y = h/2 
+			floor.x = -20
+			girl.y = h - h/2
+
+			var doors = new Array()
+			doors.push(door1)
+			doors.push(door2)
+			doors.push(door3)
+			doors.push(door4)
+			//var doors = {door1, door2, door3, door4}
+			var i = 0
+			var text = new Array()
+
+			for (; i < 4; i++) {
+				doors[i].height = 380
+				doors[i].y = h/2-280
+				doors[i].x = 150+ i*300
+
+				
+				//later change to json
+				classC = obj.classes[i]
+
+				//classC.name
+				text.push(new PIXI.Text(classC.name, {font: "20px Roboto", fill: '#000000'}))
+				text[i].x = 150 + i*300 + 85
+				text[i].y = h/2 - 175
+
+				switch (classC.status) {
+					case 0:
+						stat[i] = new PIXI.Sprite(
+							PIXI.loader.resources["static/Images/completed.png"].texture
+						);
+						stat[i].x = 150 + i*300 + 90
+
+						break;
+
+					case 1:
+						stat[i] = new PIXI.Sprite(
+							PIXI.loader.resources["static/Images/starting.png"].texture
+						);
+						stat[i].x = 150 + i*300 + 65
+
+						break;
+
+					case 2:
+						stat[i] = new PIXI.Sprite(
+							PIXI.loader.resources["static/Images/donotenter.png"].texture
+						);
+						stat[i].x = 150 + i*300 + 80
+
+						break;
+				}
+				stat[i].y = h/2 - 320
+
+
+			}
+			
+			girl.height = girl.height * 1.2
+			girl.width = girl.width * 1.2	
+
+			stage.addChild(wall);
+			stage.addChild(floor);
+			stage.addChild(door1);
+			stage.addChild(door2);
+			stage.addChild(door3);
+			stage.addChild(door4);
+			stage.addChild(girl);
+			stage.addChild(stat[0])
+			stage.addChild(stat[1])
+			stage.addChild(stat[2])
+			stage.addChild(stat[3])
+			stage.addChild(text[0])
+			stage.addChild(text[1])
+			stage.addChild(text[2])
+			stage.addChild(text[3])
+
+			//stage.addChild([girl, wall, donotenter, door, floor,emptypedestal, starting, completed, pedestal]);
+			renderer.render(stage)
+		}
+
+		renderer.render(stage);
+		renderer.view.style.position = "absolute";
+		renderer.view.style.display = "block";
+		renderer.autoResize = true;
+		renderer.resize(window.innerWidth, window.innerHeight);
+
+	</script>
+
+</body>
+</html>
