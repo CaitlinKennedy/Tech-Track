@@ -32,7 +32,11 @@
 		  	"static/Images/girl.png",
 		  	"static/Images/starting.png",
 		  	"static/Images/completed.png",
-		  	"static/Images/pedestal.png"
+		  	"static/Images/pedestal.png",
+		  	"static/Images/level1left.png",
+		  	"static/Images/level2left.png",
+		  	"static/Images/level2right.png",
+		  	"static/Images/level3right.png"
 		  ])
 		  .load(setup);
 
@@ -41,7 +45,7 @@
 		renderer.view.style.position = "absolute";
 		renderer.view.style.display = "block";
 		renderer.autoResize = true;
-		renderer.resize(window.innerWidth, window.innerHeight);
+		renderer.resize(window.innerWidth, window.innerHeight - 47);
 		var obj = {
 			level: 3,
 			classes: [
@@ -105,6 +109,18 @@
 			var pedestal = new PIXI.Sprite(
 				PIXI.loader.resources["static/Images/pedestal.png"].texture
 			);
+			var level1left = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/level1left.png"].texture
+			);
+			var level2left = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/level2left.png"].texture
+			);
+			var level2right = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/level2right.png"].texture
+			);
+			var level3right = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/level3right.png"].texture
+			);
 
 			var status1;
 			var status2;
@@ -117,7 +133,7 @@
 			stat.push(status4)
 
 			w = window.innerWidth
-			h = window.innerHeight
+			h = window.innerHeight - 47
 						
 			console.log("h: ", h)
 
@@ -151,7 +167,7 @@
 
 				//classC.name
 				text.push(new PIXI.Text(classC.name, {font: "20px Roboto", fill: '#000000'}))
-				text[i].x = 150 + i*300 + 85
+				text[i].x = 150 + i*300 + 82
 				text[i].y = h/2 - 175
 
 				switch (classC.status) {
@@ -183,6 +199,25 @@
 
 
 			}
+		
+			level1left.x = 20
+			level2left.x = 20
+			level1left.y = h/4
+			level2left.y = h/4
+			level1left.width = 100
+			level1left.height = 65
+			level2left.width = 100
+			level2left.height = 65
+
+			level2right.x = wall.width - 170
+			level2right.y = h/4
+			level3right.x = wall.width - 170
+			level3right.y = h/4
+			level2right.width = 100
+			level2right.height = 65
+			level3right.width = 100
+			level3right.height = 65
+			
 
 			var completed = 1
 			var l;
@@ -225,7 +260,7 @@ function onKeyDown(key) {
 					// 	/levelPage3
 				}
 
-				if (girl.x + girl.width < w) {
+				if (girl.x + 80 < w) {
 					girl.x += 15
 				}
 
@@ -245,7 +280,7 @@ function onKeyDown(key) {
 					//		/levelPage2
 				}
 
-				if (girl.x > 0 ) {
+				if (girl.x + girl.width/3 > 0 ) {
 					girl.x -= 15
 				}
 
@@ -301,10 +336,24 @@ function onKeyDown(key) {
 			if (p) {
 				stage.addChild(pedestal)
 			}
-			if (ep) {
+			else if (ep) {
 				stage.addChild(emptypedestal)
 			}
+			if (obj.level === 1) {
+				stage.addChild(level2right)
+			}
+			else if (obj.level === 2) {
+				stage.addChild(level1left)
+				stage.addChild(level3right)
+			}
+
+			else if (obj.level === 3) {
+				stage.addChild(level2left)
+			}
+
 			stage.addChild(girl);
+			
+
 
 
 
@@ -324,7 +373,7 @@ function onKeyDown(key) {
 		renderer.view.style.position = "absolute";
 		renderer.view.style.display = "block";
 		renderer.autoResize = true;
-		renderer.resize(window.innerWidth, window.innerHeight);
+		renderer.resize(window.innerWidth, window.innerHeight - 47);
 
 
 
