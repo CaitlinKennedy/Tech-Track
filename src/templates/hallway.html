@@ -43,11 +43,11 @@
 		renderer.autoResize = true;
 		renderer.resize(window.innerWidth, window.innerHeight);
 		var obj = {
-			level: 1,
+			level: 3,
 			classes: [
 				{
 					name: "CS 307", 
-					status: 0
+					status: 1
 				}, 
 				{
 					name:"CS 314", 
@@ -55,11 +55,11 @@
 				}, 
 				{
 					name:"CS 381",
-					status:1
+					status:0
 				}, 
 				{
 					name:"CS 334", 
-					status:2
+					status:0
 				}, 
 			]
 		}
@@ -184,7 +184,28 @@
 
 			}
 
+			var completed = 1
+			var l;
+			var p;
+			var ep;
+			for (l = 0; l < 4; l++) {
+				if (obj.classes[l].status != 0) {
+					completed = 0
+				}
+			}
 
+			if (obj.level === 3 && completed) {
+				p = 1;
+				pedestal.x = wall.width - 190
+				pedestal.y = floor.y - 50
+			}
+
+			else if (obj.level === 3) {
+				ep = 1;
+				emptypedestal.x = wall.width - 190
+				emptypedestal.y = floor.y 
+
+			}
 
 			
 			girl.height = girl.height * 1.2
@@ -277,7 +298,14 @@ function onKeyDown(key) {
 			stage.addChild(text[1])
 			stage.addChild(text[2])
 			stage.addChild(text[3])
+			if (p) {
+				stage.addChild(pedestal)
+			}
+			if (ep) {
+				stage.addChild(emptypedestal)
+			}
 			stage.addChild(girl);
+
 
 
 			//stage.addChild([girl, wall, donotenter, door, floor,emptypedestal, starting, completed, pedestal]);
