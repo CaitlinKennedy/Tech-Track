@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tech Track</title>
+
+	<!--style.cc is in the static folder-->
+	<link rel="stylesheet" type="text/css" href="/static/hallwayStyle.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+</head>
+<script src="static/pixi.min.js"></script>
+<body>
+	<ul class = "Nu">
+ 		<li class = "Nl"><a class="Na" href="/instructions">Instructions</a></li>
+   		<li class = "Nll"><a class="Na" href="/logout">Logout</a></li>
+    	
+	</ul>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var renderer = PIXI.autoDetectRenderer(1000, 1000, {antialias: false, transparent: false, resolution: 1});
+		document.body.appendChild(renderer.view);
+		var stage = new PIXI.Container();
+		var x = 0
+		var pause = false
+		PIXI.loader
+		  .add([
+		    "static/Images/wall.png",
+		    "static/Images/donotenter.png",
+		    "static/Images/door.png",
+		    "static/Images/floor.png",
+		    "static/Images/emptypedestal.png",
+		  	"static/Images/girl.png",
+		  	"static/Images/starting.png",
+		  	"static/Images/completed.png",
+		  	"static/Images/pedestal.png",
+		  	"static/Images/level1left.png",
+		  	"static/Images/level2left.png",
+		  	"static/Images/level2right.png",
+		  	"static/Images/level3right.png"
+		  ])
+		  .load(setup);
+
+
+		renderer.render(stage);
+		renderer.view.style.position = "absolute";
+		renderer.view.style.display = "block";
+		renderer.autoResize = true;
+		renderer.resize(window.innerWidth, window.innerHeight - 47);
+		var obj;
+		$.getJSON('/levelPage1', function(data) {
+    		//data is the JSON string
+    		obj = JSON.parse(JSON.stringify(data));
+    		console.log(obj)
+		});
+
+
+		function setup() {		
+			pause = false	
+		 	var girl = new PIXI.Sprite(
+		    	PIXI.loader.resources["static/Images/girl.png"].texture
+			);
+			var wall = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/wall.png"].texture
+			);
+			var donotenter = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/donotenter.png"].texture
+			);
+			var door1 = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/door.png"].texture
+			);
+			var door2 = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/door.png"].texture
+			);
+			var door3 = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/door.png"].texture
+			);
+			var door4 = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/door.png"].texture
+			);
+			var floor = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/floor.png"].texture
+			);
+			var emptypedestal = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/emptypedestal.png"].texture
+			);
+			var starting = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/starting.png"].texture
+			);
+			var completed = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/completed.png"].texture
+			);
+			var pedestal = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/pedestal.png"].texture
+			);
+			var level1left = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/level1left.png"].texture
+			);
+			var level2left = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/level2left.png"].texture
+			);
+			var level2right = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/level2right.png"].texture
+			);
+			var level3right = new PIXI.Sprite(
+				PIXI.loader.resources["static/Images/level3right.png"].texture
+			);
+
+			var status1;
+			var status2;
+			var status3;
+			var status4;
+			var stat = new Array()
+			stat.push(status1)
+			stat.push(status2)
+			stat.push(status3)
+			stat.push(status4)
+
+			w = window.innerWidth
+			h = window.innerHeight - 47
+						
+			console.log("h: ", h)
+			girl.x = x
+			wall.width = w + 50
+			wall.height = h/2 + 150
+			wall.y = -40
+			wall.x = -20
+			floor.width = w  + 50
+			floor.height = h/2 + 100
+			floor.y = h/2 
+			floor.x = -20
+			girl.y = h - h/2
+
+			var doors = new Array()
+			doors.push(door1)
+			doors.push(door2)
+			doors.push(door3)
+			doors.push(door4)
+			//var doors = {door1, door2, door3, door4}
+			var i = 0
+			var text = new Array()
+
+			for (; i < 4; i++) {
+				doors[i].height = 380
+				doors[i].y = h/2-280
+				doors[i].x = 150+ i*300
+
+				
+				//later change to json
+				classC = obj.classes[i]
+
+				//classC.name
+				text.push(new PIXI.Text(classC.name, {font: "20px Roboto", fill: '#000000'}))
+				text[i].x = 150 + i*300 + 82
+				text[i].y = h/2 - 175
+
+				switch (classC.status) {
+					case 0:
+						stat[i] = new PIXI.Sprite(
+							PIXI.loader.resources["static/Images/completed.png"].texture
+						);
+						stat[i].x = 150 + i*300 + 90
+
+						break;
+
+					case 1:
+						stat[i] = new PIXI.Sprite(
+							PIXI.loader.resources["static/Images/starting.png"].texture
+						);
+						stat[i].x = 150 + i*300 + 65
+
+						break;
+
+					case 2:
+						stat[i] = new PIXI.Sprite(
+							PIXI.loader.resources["static/Images/donotenter.png"].texture
+						);
+						stat[i].x = 150 + i*300 + 80
+
+						break;
+				}
+				stat[i].y = h/2 - 320
+
+
+			}
+		
+			level1left.x = 20
+			level2left.x = 20
+			level1left.y = h/4
+			level2left.y = h/4
+			level1left.width = 100
+			level1left.height = 65
+			level2left.width = 100
+			level2left.height = 65
+
+			level2right.x = wall.width - 170
+			level2right.y = h/4
+			level3right.x = wall.width - 170
+			level3right.y = h/4
+			level2right.width = 100
+			level2right.height = 65
+			level3right.width = 100
+			level3right.height = 65
+			
+
+			var completed = 1
+			var l;
+			var p;
+			var ep;
+			for (l = 0; l < 4; l++) {
+				if (obj.classes[l].status != 0) {
+					completed = 0
+				}
+			}
+
+			if (obj.level === 3 && completed) {
+				p = 1;
+				pedestal.x = wall.width - 190
+				pedestal.y = floor.y - 50
+			}
+
+			else if (obj.level === 3) {
+				ep = 1;
+				emptypedestal.x = wall.width - 190
+				emptypedestal.y = floor.y 
+
+			}
+
+			
+			girl.height = girl.height * 1.2
+			girl.width = girl.width * 1.2	
+
+
+
+function onKeyDown(key) {
+	if (pause == false ) {
+			if (key.keyCode === 39) {
+				//right
+				console.log(girl.x)
+				console.log(w)
+
+				if (girl.x + girl.width/2 > w && obj.level === 1) {
+					//    / levelPage2
+					girl.x = 0
+					console.log("GO TO LEVEL 2")
+					pause = true
+					$.getJSON('/levelPage2', function(data) {
+    					//data is the JSON string
+    					obj = JSON.parse(JSON.stringify(data));
+    					console.log(obj)
+    					x = 0
+    					remove()
+    					setup()
+					});
+				}
+
+				else if (girl.x + girl.width/2 > w && obj.level === 2) {
+					// 	/levelPage3
+					console.log("GO TO LEVEL 3")
+					girl.x = 0
+					$.getJSON('/levelPage3', function(data) {
+    					//data is the JSON string
+    					pause = true
+    					obj = JSON.parse(JSON.stringify(data));
+    					console.log(obj)
+    					x = 0
+    					remove()
+    					setup()
+					});
+				}
+
+				else if (girl.x + 80 < w) {
+					girl.x += 15
+				}
+
+			}
+
+			else if (key.keyCode === 37) {
+				//left
+
+				if (girl.x + girl.width/2 < 0 && obj.level === 2) {
+					//go to prev level
+					//		/levelPage1
+					console.log("GO TO LEVEL 1")
+					girl.x = 1250
+					pause = true
+					$.getJSON('/levelPage1', function(data) {
+    					//data is the JSON string
+    					obj = JSON.parse(JSON.stringify(data));
+    					console.log(obj)
+    					x = 1250
+    					remove()
+    					setup()
+					});
+				}
+
+				else if (girl.x + girl.width/2 < 0 && obj.level === 3) {
+					//go to prev level
+					//		/levelPage2
+					console.log("GO TO LEVEL 2")
+					girl.x = 1250
+					pause = true 
+					$.getJSON('/levelPage2', function(data) {
+    					//data is the JSON string
+    					obj = JSON.parse(JSON.stringify(data));
+    					console.log(obj)
+    					x = 1250
+    					remove()
+    					setup()
+					});
+				}
+
+				else if (girl.x + girl.width > 0 ) {
+					girl.x -= 15
+
+				}
+
+			}
+			
+			else if (key.keyCode === 38) {
+				
+				if (girl.y + girl.height > wall.height) {
+					girl.y -= 15
+				}
+
+				var m;
+				for (m =0; m < 4; m++) {
+
+					if (girl.x + (girl.width)/2 > doors[m].x && girl.x + (girl.width)/2 < (doors[m].x + doors[m].width) && obj.classes[m].status < 2 && girl.y + girl.height < wall.height) {
+						console.log("go to level")
+						console.log(obj.classes[m].name)
+						// got to the quiz page for obj.classes[i]
+					}
+				}	
+
+			}
+
+			else if (key.keyCode === 40) {
+				if (girl.y + girl.height < h) {
+					girl.y +=15
+				}
+
+				
+			}
+			renderer.render(stage)
+		}
+
+}
+		document.addEventListener('keydown', onKeyDown)
+
+
+			stage.addChild(wall);
+			stage.addChild(floor);
+			stage.addChild(door1);
+			stage.addChild(door2);
+			stage.addChild(door3);
+			stage.addChild(door4);
+			stage.addChild(stat[0])
+			stage.addChild(stat[1])
+			stage.addChild(stat[2])
+			stage.addChild(stat[3])
+			stage.addChild(text[0])
+			stage.addChild(text[1])
+			stage.addChild(text[2])
+			stage.addChild(text[3])
+			if (p) {
+				stage.addChild(pedestal)
+			}
+			else if (ep) {
+				stage.addChild(emptypedestal)
+			}
+			if (obj.level === 1) {
+				stage.addChild(level2right)
+			}
+			else if (obj.level === 2) {
+				stage.addChild(level1left)
+				stage.addChild(level3right)
+			}
+
+			else if (obj.level === 3) {
+				stage.addChild(level2left)
+			}
+
+			stage.addChild(girl);
+			
+
+
+
+
+			//stage.addChild([girl, wall, donotenter, door, floor,emptypedestal, starting, completed, pedestal]);
+			renderer.render(stage)
+		}
+
+		function remove() {
+			girl = null
+			while(
+				this.stage.children.length > 0){   
+				var child = this.stage.getChildAt(0);  
+				this.stage.removeChild(child);
+
+			}
+
+		}
+
+		function gameLoop() {
+			requestAnimationFrame(gameLoop);
+
+			renderer.render(stage)
+		}
+
+
+
+		renderer.render(stage);
+		renderer.view.style.position = "absolute";
+		renderer.view.style.display = "block";
+		renderer.autoResize = true;
+		renderer.resize(window.innerWidth, window.innerHeight - 47);
+
+
+
+	</script>
+
+</body>
+</html>
