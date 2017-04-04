@@ -10,11 +10,17 @@
 </head>
 <script src="static/pixi.min.js"></script>
 <body>
+	<ul class = "Nu">
+ 		<li class = "Nl"><a class="Na" href="/instructions">Instructions</a></li>
+   		<li class = "Nll"><a class="Na" href="/logout">Logout</a></li>
+    	
+	</ul>
+
+
 	<script type="text/javascript">
 		var renderer = PIXI.autoDetectRenderer(1000, 1000, {antialias: false, transparent: false, resolution: 1});
 		document.body.appendChild(renderer.view);
 		var stage = new PIXI.Container();
-		
 
 		PIXI.loader
 		  .add([
@@ -36,30 +42,31 @@
 		renderer.view.style.display = "block";
 		renderer.autoResize = true;
 		renderer.resize(window.innerWidth, window.innerHeight);
+		var obj = {
+			level: 1,
+			classes: [
+				{
+					name: "CS 307", 
+					status: 0
+				}, 
+				{
+					name:"CS 314", 
+					status:0
+				}, 
+				{
+					name:"CS 381",
+					status:1
+				}, 
+				{
+					name:"CS 334", 
+					status:2
+				}, 
+			]
+		}
 
 		function setup() {
 				//change to some request
-			var obj = {
-				level: 1,
-				classes: [
-					{
-						name: "CS 307", 
-						status: 0
-					}, 
-					{
-						name:"CS 314", 
-						status:0
-					}, 
-					{
-						name:"CS 381",
-						status:1
-					}, 
-					{
-						name:"CS 334", 
-						status:2
-					}, 
-				]
-			}
+			
 			//var results = JSON.stringify();
 			//var classes = JSON.parse(results)
 		 	var girl = new PIXI.Sprite(
@@ -176,9 +183,85 @@
 
 
 			}
+
+
+
 			
 			girl.height = girl.height * 1.2
 			girl.width = girl.width * 1.2	
+
+
+
+function onKeyDown(key) {
+			if (key.keyCode === 39) {
+				//right
+
+				if (girl.x > w && obj.level === 1) {
+					// 	/levelPage2
+				}
+
+				else if (girl.x > w && obj.level === 2) {
+					// 	/levelPage3
+				}
+
+				if (girl.x + girl.width < w) {
+					girl.x += 15
+				}
+
+				console.log(girl.x)
+			}
+
+			if (key.keyCode === 37) {
+				//left
+
+				if (girl.x < 0 && obj.level === 2) {
+					//go to prev level
+					//		/levelPage1
+				}
+
+				else if (girl.x < 0 && obj.level === 3) {
+					//go to prev level
+					//		/levelPage2
+				}
+
+				if (girl.x > 0 ) {
+					girl.x -= 15
+				}
+
+				console.log(girl.x)
+			}
+			
+			if (key.keyCode === 38) {
+				
+				if (girl.y + girl.height > wall.height) {
+					girl.y -= 15
+				}
+
+				var m;
+				for (m =0; m < 4; m++) {
+
+					if (girl.x + (girl.width)/2 > doors[m].x && girl.x + (girl.width)/2 < (doors[m].x + doors[m].width) && obj.classes[m].status < 2 && girl.y + girl.height < wall.height) {
+						console.log("go to level")
+						console.log(obj.classes[m].name)
+						// got to the quiz page for obj.classes[i]
+					}
+				}	
+
+			}
+
+			if (key.keyCode === 40) {
+				if (girl.y + girl.height < h) {
+					girl.y +=15
+				}
+
+				
+			}
+			renderer.render(stage)
+		}
+
+
+		document.addEventListener('keydown', onKeyDown)
+
 
 			stage.addChild(wall);
 			stage.addChild(floor);
@@ -186,7 +269,6 @@
 			stage.addChild(door2);
 			stage.addChild(door3);
 			stage.addChild(door4);
-			stage.addChild(girl);
 			stage.addChild(stat[0])
 			stage.addChild(stat[1])
 			stage.addChild(stat[2])
@@ -195,16 +277,28 @@
 			stage.addChild(text[1])
 			stage.addChild(text[2])
 			stage.addChild(text[3])
+			stage.addChild(girl);
+
 
 			//stage.addChild([girl, wall, donotenter, door, floor,emptypedestal, starting, completed, pedestal]);
 			renderer.render(stage)
 		}
+
+		function gameLoop() {
+			requestAnimationFrame(gameLoop);
+
+			renderer.render(stage)
+		}
+
+
 
 		renderer.render(stage);
 		renderer.view.style.position = "absolute";
 		renderer.view.style.display = "block";
 		renderer.autoResize = true;
 		renderer.resize(window.innerWidth, window.innerHeight);
+
+
 
 	</script>
 
