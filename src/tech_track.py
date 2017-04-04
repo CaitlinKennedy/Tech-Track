@@ -3,6 +3,8 @@ from flask import session, redirect, url_for, escape, request
 from flask import request
 from flaskext.mysql import MySQL
 from flask import render_template
+from flask import Flask,jsonify,json
+
 
 app = Flask(__name__)
 
@@ -10,7 +12,7 @@ app = Flask(__name__)
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = '27'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'lol'
 
 app.config['MYSQL_DATABASE_DB'] = 'TechTrack'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
@@ -94,7 +96,96 @@ def register():
     #return "You are already registered" #render html for register page and send error message
     return render_template('createAccount.html', error=error) 
 
+#levelPage1
+@app.route('/levelPage1')
+def levelPage1():
+	if 'username' in session:
 
+		conn = mysql.connect()
+		cursor = conn.cursor()
+
+		cursor.execute("SELECT * from Users where emailAccount='" + session['username'] + "'")
+		data = cursor.fetchone()
+		print(data[1]);
+
+		status180 = data[3]
+		status240 = data[4]
+		status250=data[5]
+		status251=data[6]
+
+		if status180 == True:
+			status180 = 0;
+		else:
+			status180 = 1;
+
+		if status240 == True:
+			status240 = 0;
+		else:
+			status240 = 1;
+
+		if status250 == True:
+			status250 = 0;
+		else:
+			status250 = 1;
+		
+		if status251 == True:
+			status251 = 0;
+		else:
+			status251 = 1;
+
+		try:
+			#initalize a levelData list
+			levelData = []
+			#create a instance for filling up levelData
+			levelDict = {
+			'level' : 1,
+			'classes': [
+					{
+						'name': 'CS 180', 
+						'status': status180
+					}, 
+					{
+						'name':'CS 240', 
+						'status':status240
+					}, 
+					{
+						'name':'CS 250',
+						'status':status250
+					}, 
+					{
+						'name':'CS 251', 
+						'status':status251
+					} 
+				]
+			}
+			levelData.append(levelDict)
+			#convert to json data
+			jsonStr = json.dumps(levelData)
+		except Exception ,e:
+			print str(e)
+		return jsonify(LevelObj=jsonStr)
+
+
+		#return render_template('levelPage1.html')
+	return redirect(url_for('login'))
+
+@app.route('/levelPage2')
+def levelPage2():
+	if 'username' in session:
+		return render_template('levelPage2.html')
+	return redirect(url_for('login'))
+
+@app.route('/levelPage3')
+def levelPage3():
+	if 'username' in session:
+		return render_template('levelPage3.html')
+	return redirect(url_for('login'))
+
+@app.route('/courseOverview')
+def courseOverview():
+	if 'username' in session:
+		return render_template('courseOverview.html')
+	return redirect(url_for('login'))
 
 #Logout
 @app.route('/logout')
