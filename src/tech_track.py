@@ -253,7 +253,6 @@ def levelPage2():
 
 @app.route('/levelPage3')
 def levelPage3():
-def levelPage3():
 	if 'username' in session:
 		
 		conn = mysql.connect()
@@ -335,7 +334,7 @@ def levelPage3():
 		except Exception ,e:
 			print str(e)
 
-		return jsonify(obj=jsonStr)
+		return jsonify(LevelObj=jsonStr)
 
 	return redirect(url_for('login'))
 
