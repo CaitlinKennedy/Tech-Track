@@ -106,29 +106,28 @@ def levelPage1():
 
 		cursor.execute("SELECT * from Users where emailAccount='" + session['username'] + "'")
 		data = cursor.fetchone()
-		print(data[1]);
 
 		status180 = data[3]
 		status240 = data[4]
 		status250=data[5]
 		status251=data[6]
 
-		if status180 == True:
+		if status180 is 1:
 			status180 = 0;
 		else:
 			status180 = 1;
 
-		if status240 == True:
+		if status240 is 1:
 			status240 = 0;
 		else:
 			status240 = 1;
 
-		if status250 == True:
+		if status250 is 1:
 			status250 = 0;
 		else:
 			status250 = 1;
 		
-		if status251 == True:
+		if status251 is 1:
 			status251 = 0;
 		else:
 			status251 = 1;
@@ -172,13 +171,172 @@ def levelPage1():
 @app.route('/levelPage2')
 def levelPage2():
 	if 'username' in session:
-		return render_template('levelPage2.html')
+		
+		conn = mysql.connect()
+		cursor = conn.cursor()
+
+		cursor.execute("SELECT * from Users where emailAccount='" + session['username'] + "'")
+		data = cursor.fetchone()
+		print(data);
+
+		status180 = data[3]
+		status240 = data[4]
+		status250=data[5]
+		status251=data[6]
+		status314 = data[7]
+		status334 = data[8]
+		status381=data[9]
+		status307=data[10]
+
+
+		if ((status180 is 1) or (status240 is 1) or (status250 is 1) or (status251 is 1)):
+			status314 = 2;
+			status334 = 2;
+			status381 = 2;
+			status307 = 2;
+		else: 
+			if status314 is 1:
+				status314 = 0;
+			else:
+				status314 = 1;
+
+			if status334 is 1:
+				status334 = 0;
+			else:
+				status334 = 1;
+
+			if status381 is 1:
+				status381 = 0;
+			else:
+				status381 = 1;
+			
+			if status307 is 1:
+				status307 = 0;
+			else:
+				status307 = 1;
+
+
+		try:
+			#initalize a levelData list
+			levelData = []
+			#create a instance for filling up levelData
+			levelDict = {
+			'level' : 2,
+			'classes': [
+					{
+						'name': 'CS 314', 
+						'status': status314
+					}, 
+					{
+						'name':'CS 334', 
+						'status':status334
+					}, 
+					{
+						'name':'CS 381',
+						'status':status381
+					}, 
+					{
+						'name':'CS 307', 
+						'status':status307
+					} 
+				]
+			}
+			levelData.append(levelDict)
+			#convert to json data
+			jsonStr = json.dumps(levelData)
+		except Exception ,e:
+			print str(e)
+		return jsonify(LevelObj=jsonStr)
+
+		#return render_template('levelPage2.html')
 	return redirect(url_for('login'))
 
 @app.route('/levelPage3')
 def levelPage3():
+def levelPage3():
 	if 'username' in session:
-		return render_template('levelPage3.html')
+		
+		conn = mysql.connect()
+		cursor = conn.cursor()
+
+		cursor.execute("SELECT * from Users where emailAccount='" + session['username'] + "'")
+		data = cursor.fetchone()
+
+		status180 = data[3]
+		status240 = data[4]
+		status250=data[5]
+		status251=data[6]
+		status314 = data[7]
+		status334 = data[8]
+		status381=data[9]
+		status307=data[10]
+		status448 = data[11]
+		status456 = data[12]
+		status426 = data[13]
+		status422 = data[14]
+
+		if (status180 is 0) or (status240 is 0) or (status250 is 0) or (status251 is 0) or (status314 is 0) or (status334 is 0) or (status381 is 0) or (status307 is 0):
+			status448 = 2
+			status456 = 2
+			status426 = 2
+			status422 = 2
+		else: 		
+			if status448 is 1:
+				status448 = 0
+			else:
+				status448 = 1
+
+			if status456 is 1:
+				status456 = 0
+			else:
+				status456 = 1
+
+			if status426 is 1:
+				status426 = 0
+			else:
+				status426 = 1
+
+			if status422 is 1:
+				status422 = 0
+			else:
+				status422 = 1
+
+		try:
+			# Initialize an class list thing for Caitlin
+			levelData = []
+
+			# Create an instance for filling up classData
+			levelDict = {
+			'level': 3,
+			'classes': [
+				{
+					'name': "CS 448", 
+					'status':status448
+				}, 
+				{
+					'name':"CS 456", 
+					'status':status456
+				}, 
+				{
+					'name':"CS 426",
+					'status':status426
+				}, 
+				{
+					'name':"CS 422", 
+					'status':status422
+				}
+			]}
+			levelData.append(levelDict)
+
+
+			# Convert to json data
+			jsonStr = json.dumps(levelData)
+
+		except Exception ,e:
+			print str(e)
+
+		return jsonify(obj=jsonStr)
+
 	return redirect(url_for('login'))
 
 @app.route('/courseOverview')
