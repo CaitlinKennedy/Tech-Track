@@ -16,12 +16,13 @@
     	
 	</ul>
 
-
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		var renderer = PIXI.autoDetectRenderer(1000, 1000, {antialias: false, transparent: false, resolution: 1});
 		document.body.appendChild(renderer.view);
 		var stage = new PIXI.Container();
-
+		var x = 0
+		var pause = false
 		PIXI.loader
 		  .add([
 		    "static/Images/wall.png",
@@ -46,33 +47,16 @@
 		renderer.view.style.display = "block";
 		renderer.autoResize = true;
 		renderer.resize(window.innerWidth, window.innerHeight - 47);
-		var obj = {
-			level: 3,
-			classes: [
-				{
-					name: "CS 307", 
-					status: 1
-				}, 
-				{
-					name:"CS 314", 
-					status:0
-				}, 
-				{
-					name:"CS 381",
-					status:0
-				}, 
-				{
-					name:"CS 334", 
-					status:0
-				}, 
-			]
-		}
+		var obj;
+		$.getJSON('/levelPage1', function(data) {
+    		//data is the JSON string
+    		obj = JSON.parse(JSON.stringify(data));
+    		console.log(obj)
+		});
 
-		function setup() {
-				//change to some request
-			
-			//var results = JSON.stringify();
-			//var classes = JSON.parse(results)
+
+		function setup() {		
+			pause = false	
 		 	var girl = new PIXI.Sprite(
 		    	PIXI.loader.resources["static/Images/girl.png"].texture
 			);
@@ -136,7 +120,7 @@
 			h = window.innerHeight - 47
 						
 			console.log("h: ", h)
-
+			girl.x = x
 			wall.width = w + 50
 			wall.height = h/2 + 150
 			wall.y = -40
@@ -249,45 +233,91 @@
 
 
 function onKeyDown(key) {
+	if (pause == false ) {
 			if (key.keyCode === 39) {
 				//right
+				console.log(girl.x)
+				console.log(w)
 
-				if (girl.x > w && obj.level === 1) {
-					// 	/levelPage2
+				if (girl.x + girl.width/2 > w && obj.level === 1) {
+					//    / levelPage2
+					girl.x = 0
+					console.log("GO TO LEVEL 2")
+					pause = true
+					$.getJSON('/levelPage2', function(data) {
+    					//data is the JSON string
+    					obj = JSON.parse(JSON.stringify(data));
+    					console.log(obj)
+    					x = 0
+    					remove()
+    					setup()
+					});
 				}
 
-				else if (girl.x > w && obj.level === 2) {
+				else if (girl.x + girl.width/2 > w && obj.level === 2) {
 					// 	/levelPage3
+					console.log("GO TO LEVEL 3")
+					girl.x = 0
+					$.getJSON('/levelPage3', function(data) {
+    					//data is the JSON string
+    					pause = true
+    					obj = JSON.parse(JSON.stringify(data));
+    					console.log(obj)
+    					x = 0
+    					remove()
+    					setup()
+					});
 				}
 
-				if (girl.x + 80 < w) {
+				else if (girl.x + 80 < w) {
 					girl.x += 15
 				}
 
-				console.log(girl.x)
 			}
 
-			if (key.keyCode === 37) {
+			else if (key.keyCode === 37) {
 				//left
 
-				if (girl.x < 0 && obj.level === 2) {
+				if (girl.x + girl.width/2 < 0 && obj.level === 2) {
 					//go to prev level
 					//		/levelPage1
+					console.log("GO TO LEVEL 1")
+					girl.x = 1250
+					pause = true
+					$.getJSON('/levelPage1', function(data) {
+    					//data is the JSON string
+    					obj = JSON.parse(JSON.stringify(data));
+    					console.log(obj)
+    					x = 1250
+    					remove()
+    					setup()
+					});
 				}
 
-				else if (girl.x < 0 && obj.level === 3) {
+				else if (girl.x + girl.width/2 < 0 && obj.level === 3) {
 					//go to prev level
 					//		/levelPage2
+					console.log("GO TO LEVEL 2")
+					girl.x = 1250
+					pause = true 
+					$.getJSON('/levelPage2', function(data) {
+    					//data is the JSON string
+    					obj = JSON.parse(JSON.stringify(data));
+    					console.log(obj)
+    					x = 1250
+    					remove()
+    					setup()
+					});
 				}
 
-				if (girl.x + girl.width/3 > 0 ) {
+				else if (girl.x + girl.width > 0 ) {
 					girl.x -= 15
+
 				}
 
-				console.log(girl.x)
 			}
 			
-			if (key.keyCode === 38) {
+			else if (key.keyCode === 38) {
 				
 				if (girl.y + girl.height > wall.height) {
 					girl.y -= 15
@@ -305,7 +335,7 @@ function onKeyDown(key) {
 
 			}
 
-			if (key.keyCode === 40) {
+			else if (key.keyCode === 40) {
 				if (girl.y + girl.height < h) {
 					girl.y +=15
 				}
@@ -315,7 +345,7 @@ function onKeyDown(key) {
 			renderer.render(stage)
 		}
 
-
+}
 		document.addEventListener('keydown', onKeyDown)
 
 
@@ -359,6 +389,17 @@ function onKeyDown(key) {
 
 			//stage.addChild([girl, wall, donotenter, door, floor,emptypedestal, starting, completed, pedestal]);
 			renderer.render(stage)
+		}
+
+		function remove() {
+			girl = null
+			while(
+				this.stage.children.length > 0){   
+				var child = this.stage.getChildAt(0);  
+				this.stage.removeChild(child);
+
+			}
+
 		}
 
 		function gameLoop() {
