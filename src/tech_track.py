@@ -12,7 +12,7 @@ app = Flask(__name__)
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = '22jojo24'
+app.config['MYSQL_DATABASE_PASSWORD'] = '27'
 
 app.config['MYSQL_DATABASE_DB'] = 'TechTrack'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
