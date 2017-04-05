@@ -183,7 +183,8 @@ def levelPage2():
 		status307=data[10]
 
 
-		if ((status180 is 0) and (status240 is 0) and (status250 is 0) and (status251 is 0)):
+		#From database: 0 is not completed, 1 is completed
+		#For the JSON: 0 is completed, 1 is not completed and in current level, 2 is prerequisites arent met
 		#If any of level 1's courses are not completed, then user should not be able to do any of level 2 courses
 		if ((status180 is 0) or (status240 is 0) or (status250 is 0) or (status251 is 0)):
 			status314 = 2;
