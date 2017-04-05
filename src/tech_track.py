@@ -183,7 +183,7 @@ def levelPage2():
 		status307=data[10]
 
 
-		if ((status180 is 0) and (status240 is 0) and (status250 is 0) and (status251 is 0)):
+		if ((status180 is 0) or (status240 is 0) and (status250 is 0) and (status251 is 0)):
 			status314 = 2;
 			status334 = 2;
 			status381 = 2;
