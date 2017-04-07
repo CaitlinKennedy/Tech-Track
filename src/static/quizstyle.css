@@ -1,4 +1,7 @@
-* {padding: 0; margin: 0}
+* {
+    padding: 0; margin: 0
+}
+
 .gameTitle{
 	text-align: center;
 	font-size: 50px;
@@ -7,7 +10,16 @@
     font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
     text-align: center;
     font-size: 18px;
-    /*color: #c12d22; */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgba(255, 0, 0, 0.8);
+}
+.error_rank{
+    font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+    text-align: center;
+    font-size: 18px;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -54,21 +66,40 @@ body{
 
 }
 input[type="submit"]{
+
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	margin-top: 1em;
-	/*background-color: #c12d22;*/
-	/*background-color: rgba(153, 102, 255, 0.4);*/
-	background-color: rgba(45, 73, 94, 0.7);
+    background-color: #333;
     border: none;
     color: white;
-    margin-left: 15em;
-    /*margin: 4px 2px;*/
+    float: left;
     font-size: 1em;
     padding: 1em;
-	/*text-align: center;*/
 	width: 30%;
 	
 }
+input[type="submit"]:hover{
+    background-color: #111;
+}
+input[type="button"]{
+
+    font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+    margin-top: 1em;
+    background-color: #333;
+    border: none;
+    color: white;
+    float: right;
+    margin-right: 2.2em;
+    font-size: 1em;
+    padding: 1em;
+    width: 30%;
+    
+    
+}
+input[type="button"]:hover{
+    background-color: #111;
+}
+
 /*#button{
 	width: 7em;
 	height: 2em;
@@ -80,8 +111,17 @@ input[type="submit"]{
 	/*color: rgb(255, 140, 0);*/
 	color: black;
 	margin-left: 20px;
-	font-size: 30px;
+	font-size: 20px;
 }
 .correct{
 	color: #00ff00;
+}
+#rankquiz{
+    text-align: center;
+    height: 30px;
+    width: 50px;
+    font-size: 18px;
+    background-color: #fff;
+    
+    
 }
