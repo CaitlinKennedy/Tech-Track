@@ -366,7 +366,6 @@ def quiz():
 	showSubmit = None
 	course = None
 
-	print session
 	if 'username' in session:
 
 		if 'currentCourse' in session:
@@ -385,7 +384,7 @@ def quiz():
 		if request.method == 'POST':
 			print request.form
 
-			if (len(request.form) != 6):
+			if (len(request.form) != 7):
 				error = "Please answer all of the questions."
 				showSubmit = True
 			else:
@@ -393,7 +392,7 @@ def quiz():
 				answers = []
 				score = 0
 
-				for i in range(0, len(request.form) - 1):
+				for i in range(0, len(request.form) - 2):
 					answers.append(int(request.form["q" + str(i+1)]))
 
 					if ( int(questions[i][5]) == answers[i] ):
@@ -402,8 +401,7 @@ def quiz():
 					else:
 						grades.append(0)
 
-				#TODO: Add a rank feature.
-				rank = 5
+				rank = request.form["rankquiz"]
 
 				cursor.execute("SELECT courseId FROM courses WHERE courseAbbreviation='" + course +"'")
 				courseId = cursor.fetchone()

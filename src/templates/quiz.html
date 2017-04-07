@@ -17,10 +17,6 @@
 		<!-- <h1 class="gameTitle">Game 3</h1> -->
 		<header class="gameTitle">{{questions[0][6]}}</header>
 
-		<!--I added the rank error line -->
-		<div class="error_rank">Please rank the quiz before submitting.</div>
-
-
 		<div class="questions">
 			<form action="/quiz" method="POST" class="questions">
 
@@ -70,9 +66,10 @@
 
 				<!--I added this div for rank -->
 				<div>
-					<p>Please rank the quiz!&#9786</p>
+
+					<p>Please rank the course!&#9786</p>
 					<!--<input type="text" id="rankquiz" placeholder="Rank"> / 5 -->
-					<select id="rankquiz">
+					<select name="rankquiz">
   						<option value="1">1</option>
   						<option value="2">2</option>
  						<option value="3">3</option>
@@ -86,9 +83,9 @@
 					<!--I commented this out the top line and added the line below -->
 					<input class = "Nl" type="submit" name="submit" value="SUBMIT">
 				{% else %}
-					<!-- <a href="/levels">Return to level page.</a> --> 
-					<!--I commented this out the top line and added the line below -->
-					<input type="button" name="button" value="LEVEL PAGE"><br>
+
+					<a href="/levels"><button id="button" type="button">LEVEL PAGE</button><a href="/levels">
+
 				{% endif %}
 			</form>
 		</div>
