@@ -12,7 +12,7 @@ app = Flask(__name__)
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = '22jojo24'
+app.config['MYSQL_DATABASE_PASSWORD'] = '27'
 
 app.config['MYSQL_DATABASE_DB'] = 'TechTrack'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
@@ -332,13 +332,12 @@ def overview(classNum):
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute("SELECT courseName from courses where courseAbbreviation='" + classNoSpace + "'")
-		data1 = cursor.fetchone()
+		cursor.execute("SELECT courseName,courseOverview from courses where courseAbbreviation='" + classNoSpace + "'")
+		data = cursor.fetchone()
 
-		cursor.execute("SELECT courseOverview from courses where courseAbbreviation='" + classNoSpace + "'")
-		data2 = cursor.fetchone()
 
-		return render_template('overview.html', className = classNum, courseTitle = json.dumps(data1[0]), courseOverview = json.dumps(data2[0]))
+
+		return render_template('overview.html', className = classNum, courseTitle = data[0], courseOverview = data[1])
 	return redirect(url_for('index'))
 
 
