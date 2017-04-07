@@ -81,24 +81,41 @@ input[type="submit"]{
 input[type="submit"]:hover{
     background-color: #111;
 }
-input[type="button"]{
+/*input[type="button"]{ */
+/*#button{
 
+    float: left; 
     font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
     margin-top: 1em;
     background-color: #333;
     border: none;
     color: white;
-    float: right;
-    margin-right: 2.2em;
+    margin-right: 2.2em; 
+    font-size: 1em;
+    padding: 1em;
+    width: 30%; 
+    
+    
+} */
+#button{
+    float: left;
+    font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+    margin-top: 1em;
+    background-color: #333;
+    border: none;
+    color: white;
+    float: left;
     font-size: 1em;
     padding: 1em;
     width: 30%;
-    
-    
 }
-input[type="button"]:hover{
+button:hover {
     background-color: #111;
 }
+/*input[type="button"]:hover{
+    background-color: #111;
+} */
+
 
 /*#button{
 	width: 7em;
