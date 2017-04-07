@@ -96,11 +96,11 @@ INSERT INTO questions VALUES(29,'Insert the question here...','option1 here', 'o
 INSERT INTO questions VALUES(30,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 6);
 
 /* CS381 */
-INSERT INTO questions VALUES(31,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 7);
-INSERT INTO questions VALUES(32,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 7);
-INSERT INTO questions VALUES(33,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 7);
-INSERT INTO questions VALUES(34,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 7);
-INSERT INTO questions VALUES(35,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 7);
+INSERT INTO questions VALUES(31,'Which of the following is false?','NP stands for nondeterministic polynomic time', 'In computational complexity theory, a decision problem is NP-complete when it is both in NP and NP-hard.', 'NP stands for nonlearning polynomic time', 'All are true', 1, 7);
+INSERT INTO questions VALUES(32,'Which of the following are NOT common graph topics? (hint: look at this link:http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L27-GraphSummary.htm)','Topological sort', 'Dijkstra’s algorithm', 'Monano’s algorithm', 'Shortest path on a nonweighted graph', 3, 7);
+INSERT INTO questions VALUES(33,'Which one of the following are false about asymptotic notation. ','Asymptotic Notations are languages that allow us to analyze an algorithms running time by identifying its behavior as the input size for the algorithm increases.', 'Big O notation is a type of asymptotic notation', 'Theta notation is a type of asymptotic notation', 'You can not estimate Big O notaiton by simply looking at code', 4, 7);
+INSERT INTO questions VALUES(34,'Which of the following are false. Go to this website to learn more about this topic. http://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/05DivideAndConquerI.pdf','Divide and conquer requires you to divide up the problem into several subproblems, solve each subproblem recursively, combine solutions to subproblems into overall solution', 'Merge sort recursively sorts the right and left half and merges them together', 'Counting inversions is an algorithm that cannot be applied in any setting a company would actually use.', 'The closest pair problem is when Given n points in the plane, find a pair of points with the smallest Euclidean distance between them.', 3, 7);
+INSERT INTO questions VALUES(35,'Which of the following are not related to network flow? Go to this website to learn more about this topic http://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/07NetworkFlowI-2x2.pdf','The most medium path', 'Max-flow and min cut problems', 'Capacity scaling algorithm', 'Blocking-flow algortihm', 1, 7);
 
 /* CS307 */
 INSERT INTO questions VALUES(36,'What is one of the roles in scrum?','Project Coordinator', 'Product Owner', 'Product Owner', 'Product Buyer', 2, 8);
@@ -110,11 +110,11 @@ INSERT INTO questions VALUES(39,'What does “git add” do?','Records the recen
 INSERT INTO questions VALUES(40,'What is refactoring?','Changing the external behavior without changing the code.', 'Change the scrum roles and add more roles for better communication.', 'Only improve the readability of the code.', 'Restructure the existing code without changing the external behavio', 4, 8);
 
 /* CS448 */
-INSERT INTO questions VALUES(41,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 9);
-INSERT INTO questions VALUES(42,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 9);
-INSERT INTO questions VALUES(43,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 9);
-INSERT INTO questions VALUES(44,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 9);
-INSERT INTO questions VALUES(45,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 9);
+INSERT INTO questions VALUES(41,'When you specify what columns a table will have and what the column’s types will be this is called:','The schema', 'The overview', 'The column', 'The brushover', 1, 9);
+INSERT INTO questions VALUES(42,'Atomicity ensures what for a transaction in a database?','If the database crashes it will have corrupted data', 'If a database crashes, it will be restored to a stable state. This is also known as all or nothing', 'If a database crashes you have to redo all of your old transactions, even if they were completed fully before', 'None of the above', 2, 9);
+INSERT INTO questions VALUES(43,'Which of the following are false','A database management system stores information on disks', 'There is a cost for a read (transferring data from disk to main memory)', 'There is a cost for write (transferring data from RAM to disk)', 'All are true', 4, 9);
+INSERT INTO questions VALUES(44,'Which of the following is not a component of the buffer manager. (Fun fact, you might have to implement a buffer manager in this class!)','A buffer manager brings pages into RAM.', 'A buffer manager can use a most recently used policy or least recently used policy in regards to what page was looked at most recently.', 'A buffer manager can help speed up your system', 'all are true', 4, 9);
+INSERT INTO questions VALUES(45,'Which of the following is not true for an index','An index can be clustered', 'An index can be sparse', 'An index can not be dense', 'An index can be unclustered', 3, 9);
 
 /* CS456 */
 INSERT INTO questions VALUES(46,'Abstract syntaxes are classified as first-order abstract syntax (FOAS).','true', 'false', 'option3 here', 'option4 here', 1, 10);
