@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Game 3</title>
+	<link rel="stylesheet" type="text/css" href="/static/quizstyle.css">
+</head>
+<body>
+	
+	<div class="main-questions">
+		<!-- <h1 class="gameTitle">Game 3</h1> -->
+		<header class="gameTitle">{{questions[0][6]}}</header>
+		<div class="questions">
+			<form action="/quiz" method="POST" class="questions">
+
+				{% if error %}
+					<div class="error">{{error}}</div>
+				{% endif %}
+
+				{% for question in questions %}
+				<div class="questions" id="q{{loop.index}}">
+					<h3>{{loop.index}}. {{question[0]}}</h3>
+					<ul>
+						{% if answers[loop.index0] == 1 %}
+							<input type="radio" name="q{{loop.index}}" checked value="1">{{question[1]}}<br>
+						{% else %}
+							<input type="radio" name="q{{loop.index}}" value="1">{{question[1]}}<br>
+						{% endif %}
+						
+						{% if answers[loop.index0] == 2 %}
+							<input type="radio" name="q{{loop.index}}" checked value="2">{{question[2]}}<br>
+						{% else %}
+							<input type="radio" name="q{{loop.index}}" value="2">{{question[2]}}<br>
+						{% endif %}
+
+						{% if answers[loop.index0] == 3 %}
+							<input type="radio" name="q{{loop.index}}" checked value="3">{{question[3]}}<br>
+						{% else %}
+							<input type="radio" name="q{{loop.index}}" value="3">{{question[3]}}<br>
+						{% endif %}
+
+						{% if answers[loop.index0] == 4 %}
+							<input type="radio" name="q{{loop.index}}" checked value="4">{{question[4]}}<br>
+						{% else %}
+							<input type="radio" name="q{{loop.index}}" value="4">{{question[4]}}<br>
+						{% endif %}
+					</ul>
+
+					{% if grades %}
+						{% if grades[loop.index0] == 1 %}
+							<p class="correct">&#10004;</p>
+						{% else %}
+							<p id="wrong">&#10060;</p>
+						{% endif %}
+					{% endif %}
+
+				</div>
+				{% endfor %}
+
+				{% if showSubmit %}
+					<input type="submit" name="submit" value="SUBMIT"><br>
+				{% else %}
+					<a href="/levels">Return to level page.</a>
+				{% endif %}
+			</form>
+		</div>
+	</div>
+</body>
+</html>

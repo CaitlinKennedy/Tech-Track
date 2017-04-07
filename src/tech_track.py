@@ -12,7 +12,7 @@ app = Flask(__name__)
 mysql = MySQL()
 app = Flask(__name__)
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = '22jojo24'
+app.config['MYSQL_DATABASE_PASSWORD'] = '27'
 
 app.config['MYSQL_DATABASE_DB'] = 'TechTrack'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
@@ -328,7 +328,10 @@ def levelPage3():
 def overview(classNum):
 	if 'username' in session:
 		classNoSpace = classNum.split(' ')[0]+classNum.split(' ')[1]
-		
+
+		#Save the current course as a session variable.
+		session['currentCourse'] = classNoSpace
+
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
@@ -338,7 +341,7 @@ def overview(classNum):
 		cursor.execute("SELECT courseOverview from courses where courseAbbreviation='" + classNoSpace + "'")
 		data2 = cursor.fetchone()
 
-		return render_template('overview.html', className = classNum, courseTitle = json.dumps(data1[0]), courseOverview = json.dumps(data2[0]))
+		return render_template('overview.html', className = classNum, courseTitle = data1[0], courseOverview = data2[0])
 	return redirect(url_for('index'))
 
 
@@ -354,6 +357,74 @@ def levels():
 	if 'username' in session:
 		return render_template('hallway.html')
 	return redirect(url_for('login'))
+
+
+@app.route('/quiz', methods=['GET', 'POST'])
+def quiz():
+
+	error = None
+	answers = None
+	grades = None
+	showSubmit = None
+	course = None
+
+	print session
+	if 'username' in session:
+
+		if 'currentCourse' in session:
+			course = session['currentCourse']
+		else:
+			return redirect(url_for('levels'))
+
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		cursor.execute("SELECT questionString, option1, option2, option3, option4, correctAnswer, courseName FROM courses join questions on questions.courseId=courses.courseId where courses.courseAbbreviation='" + course + "'")
+
+		questions = []
+		for row in cursor:
+			questions.append(row)
+
+		if request.method == 'POST':
+			print request.form
+
+			if (len(request.form) != 6):
+				error = "Please answer all of the questions."
+				showSubmit = True
+			else:
+				grades = []
+				answers = []
+				score = 0
+
+				for i in range(0, len(request.form) - 1):
+					answers.append(int(request.form["q" + str(i+1)]))
+
+					if ( int(questions[i][5]) == answers[i] ):
+						grades.append(1)
+						score = score + 1
+					else:
+						grades.append(0)
+
+				#TODO: Add a rank feature.
+				rank = 5
+
+				cursor.execute("SELECT courseId FROM courses WHERE courseAbbreviation='" + course +"'")
+				courseId = cursor.fetchone()
+
+				cursor.execute("DELETE FROM results WHERE emailAccount='" + session['username'] + "' and courseId=" + str(courseId[0]))
+
+				cursor.execute("INSERT INTO results (emailAccount, courseId, score, rank) VALUES ('" + session['username'] + "'," + str(courseId[0]) + "," + str(score) + "," + str(rank) +")")
+				cursor.execute("UPDATE users SET " + course.lower() + "Completed=1 WHERE emailAccount='" + session['username'] + "'")
+				conn.commit()
+
+				session.pop('currentCourse', None)
+
+			return render_template('quiz.html', questions=questions, error=error, answers=answers, grades=grades, showSubmit=showSubmit)
+		else:
+			showSubmit = True
+			return render_template('quiz.html', questions=questions, error=error, answers=answers, grades=grades, showSubmit=showSubmit)
+	return redirect(url_for('login'))
+
+
 
 #Secret Key
 app.secret_key = 'A0Zr98j/3yX R~'
