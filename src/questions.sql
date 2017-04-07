@@ -82,18 +82,18 @@ INSERT INTO questions VALUES(19,'An array of size n contains records with keys -
 INSERT INTO questions VALUES(20,'A 2-3 tree has height k. After the insertion of  a key, the tree has what height?','k', 'k-1', 'k+1', 'k or k+1', 4, 4);
 
 /* CS314 */
-INSERT INTO questions VALUES(21,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 5);
-INSERT INTO questions VALUES(22,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 5);
-INSERT INTO questions VALUES(23,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 5);
-INSERT INTO questions VALUES(24,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 5);
-INSERT INTO questions VALUES(25,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 5);
+INSERT INTO questions VALUES(21,'Floating-point arithmetic is arithmetic using formulaic representation of real numbers as an approximation so as to support a trade-off between what two things?','Range and Accuracy', 'Range and Precision', 'Precision and Approximation', 'Scale and Range', 2, 5);
+INSERT INTO questions VALUES(22,'“Least squares” means that the overall solution ______ the ___ of the squares of the residuals made in the results of every single equation.','Maximizes, sum', 'Minimizes, sum', 'Maximizes, difference', 'Minimizes, difference', 2, 5);
+INSERT INTO questions VALUES(23,'What kind of splines are there?','Linear', 'Cubic', 'Natural', 'All of the above', 4, 5);
+INSERT INTO questions VALUES(24,'Which are types of Interpolation?','Piecewise and Spline', 'Linear', 'Polynomial', 'All of the above', 4, 5);
+INSERT INTO questions VALUES(25,'Interpolation is a method of constructing what within a range of a discrete set of known data points?','New data points', 'New lines', 'Ordered data points', 'Statistics', 1, 5);
 
 /* CS334 */
-INSERT INTO questions VALUES(26,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 6);
-INSERT INTO questions VALUES(27,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 6);
-INSERT INTO questions VALUES(28,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 6);
-INSERT INTO questions VALUES(29,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 6);
-INSERT INTO questions VALUES(30,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 6);
+INSERT INTO questions VALUES(26,'What is a way to display a 3d scene on a 2d screen without a graphics library?','Ray Tracing', 'Joe Tracing', 'Raythorn interaction', 'Blameon Iteration', 1, 6);
+INSERT INTO questions VALUES(27,'Given R is a rotation matrix, which of these statements is false','R is orthogonal', 'RRT  = I', 'R is symmetric', 'All are true', 3, 6);
+INSERT INTO questions VALUES(28,'Which of the following was not in this history of computer graphics. Here is a link for this: https://www.cs.purdue.edu/homes/aliaga/cs334-15fall/lectures/lec-intro-and-history.pdf','Pop-up menus', 'Vector displays', '2D displays', 'All of the above', 4, 6);
+INSERT INTO questions VALUES(29,'Which of the following are part of procedural modeling.','Fractals', 'Terrins', 'Plants', 'All of the above', 4, 6);
+INSERT INTO questions VALUES(30,'Which of the following are popular transformations in graphics. A link to get more information on these is https://docs.google.com/document/d/1-OpoyXFxJlk9Mhjn-AypgCwsRkwvh2Ri-nxiBlExM-4/edit#','Translation', 'Rotation', 'Reverse rotation', 'Scale', 3, 6);
 
 /* CS381 */
 INSERT INTO questions VALUES(31,'Insert the question here...','option1 here', 'option2 here', 'option3 here', 'option4 here', 1, 7);
