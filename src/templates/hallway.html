@@ -270,7 +270,7 @@ function onKeyDown(key) {
 				}
 
 				else if (girl.x + 80 < w) {
-					girl.x += 15
+					girl.x += 30
 				}
 
 			}
@@ -311,7 +311,7 @@ function onKeyDown(key) {
 				}
 
 				else if (girl.x + girl.width > 0 ) {
-					girl.x -= 15
+					girl.x -= 30
 
 				}
 
@@ -327,9 +327,9 @@ function onKeyDown(key) {
 				for (m =0; m < 4; m++) {
 
 					if (girl.x + (girl.width)/2 > doors[m].x && girl.x + (girl.width)/2 < (doors[m].x + doors[m].width) && obj.classes[m].status < 2 && girl.y + girl.height < wall.height) {
-						console.log("go to level")
-						console.log(obj.classes[m].name)
-						// got to the quiz page for obj.classes[i]
+						var s = '/overview/' + obj.classes[m].name
+						console.log(s)
+						location.href = s
 					}
 				}	
 
