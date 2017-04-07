@@ -335,13 +335,11 @@ def overview(classNum):
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute("SELECT courseName from courses where courseAbbreviation='" + classNoSpace + "'")
-		data1 = cursor.fetchone()
+		cursor.execute("SELECT courseName,courseOverview from courses where courseAbbreviation='" + classNoSpace + "'")
+		data = cursor.fetchone()
 
-		cursor.execute("SELECT courseOverview from courses where courseAbbreviation='" + classNoSpace + "'")
-		data2 = cursor.fetchone()
+		return render_template('overview.html', className = classNum, courseTitle = data[0], courseOverview = data[1])
 
-		return render_template('overview.html', className = classNum, courseTitle = data1[0], courseOverview = data2[0])
 	return redirect(url_for('index'))
 
 
