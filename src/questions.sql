@@ -25,6 +25,7 @@ create table questions(
 	PRIMARY KEY(questionId)
 	);
 
+<<<<<<< HEAD
 create table results(
 	resultId INT NOT NULL AUTO_INCREMENT,
 	emailAccount VARCHAR(100),
@@ -40,11 +41,14 @@ create table results(
 	PRIMARY KEY(resultId)
 	);
 
+=======
+>>>>>>> 09517e8571abd7c1c2f33b0f17f2b68b1555bb69
 INSERT INTO courses VALUES(1, "Problem Solving and Object-Oriented Programming", "CS180", "Overview of the course...");
 INSERT INTO courses VALUES(2, "Programming in C", "CS240", "CS240 is focused on teaching different programming concepts in C. Some topics covered include the basic C development cycle, data representation, the different operators available, the structure of a program, recursion, pointers and addresses, memory allocation, structures, abstraction, and file access. 
 The C language is a high level assembly language. Many games and applications that need high performance use C. One of the advantages of C is that it is fast, but that also makes it vulnerable to safety problems. For example: when accessing an array Java will check the boundaries but C will not so assignments could take place in memory even if it is out of range. (QUESTION 1) Another benefit of C is that its programs are “Fast and Lean”, they typically use less than half of the size that a Java program would use.
 In C, integers can be represented in a number of ways. First of all it is important to know that the different data types are made up of bits which are grouped into bytes (8 bits). These bytes can then store the different values. Integers can be represented as char, short int or short, int, long int or long, and in some architectures long long int or long long. A char is made up of 1 byte, a short is 2 bytes, an int is 4 bytes, a long is 8 bytes and a long long is 16 bytes. Other data types include integers, floats, doubles and strings. 
 An important tool that programmers should be familiar with is GDB. GDB is a tool that helps debug a program by allowing the programmer to step through the execution of the program line by line. Being able to use GDb to debug a program can save days of time and will make any programmer better. To be able to use GDB one must compile their program with the -g option which adds debugging information to the program. Once the program is compiled it can be run with GDB by executing the command “gdb programName”. It is a good idea to set some  breakpoints in the program. A breakpoint is a place in the code where the execution will pause so the programmer can explore the current state of the programs execution. To set a breakpoint at the start of the main function type “break main”. Breakpoints can be placed anywhere in the program, as functions, in function, or even at specific lines. After all the breakpoints have been added the program can be run by typing “run”. Once a breakpoint is reached you will need to type “step” (run next line of code, enter function if it is a function call) or “next” (run next line of code, do not enter function if it is a function call). At any point while running the program you can run the command “where” and the backtrace of the current position will be displayed. You can also examine the different variables in your program by typing “print variableName”. Once you have finished running the program with GDB you enter the command “quit” to exit. ");
+<<<<<<< HEAD
 INSERT INTO courses VALUES(3, "Computer Architecture", "CS250", "Overview of the course...");
 INSERT INTO courses VALUES(4, "Data Structures and Algorithms", "CS251", "Overview of the course...");
 INSERT INTO courses VALUES(5, "Numerical Methods", "CS314", "Overview of the course...");
@@ -55,6 +59,18 @@ INSERT INTO courses VALUES(9, "Introduction to Relational Database Systems", "CS
 INSERT INTO courses VALUES(10, "Programming Languages", "CS456", "Overview of the course...");
 INSERT INTO courses VALUES(11, "Computer Networks", "CS422", "Overview of the course...");
 INSERT INTO courses VALUES(12, "Computer Security", "CS426", "Overview of the course...");
+=======
+INSERT INTO courses VALUES(3, "name..", "CS250", "Overview of the course...");
+INSERT INTO courses VALUES(4, "name..", "CS251", "Overview of the course...");
+INSERT INTO courses VALUES(5, "name..", "CS314", "Overview of the course...");
+INSERT INTO courses VALUES(6, "name..", "CS334", "Overview of the course...");
+INSERT INTO courses VALUES(7, "name..", "CS381", "Overview of the course...");
+INSERT INTO courses VALUES(8, "name..", "CS307", "Overview of the course...");
+INSERT INTO courses VALUES(9, "name..", "CS448", "Overview of the course...");
+INSERT INTO courses VALUES(10, "name..", "CS456", "Overview of the course...");
+INSERT INTO courses VALUES(11, "name..", "CS442", "Overview of the course...");
+INSERT INTO courses VALUES(12, "name..", "CS426", "Overview of the course...");
+>>>>>>> 09517e8571abd7c1c2f33b0f17f2b68b1555bb69
 
 /* CS180 */
 INSERT INTO questions VALUES(1,'What is something that is special about Java?','It uses Object Oriented Program', 'It does not use Object Oriented Programming', 'It is the only language with if statements', 'It is the only language with for loops', 1, 1);
