@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Overview</title>
+	<title>Settings</title>
 
 	<!--style.cc is in the static folder-->
 	<link rel="stylesheet" type="text/css" href="/static/style.css">
@@ -12,20 +12,19 @@
 
 </head>
 <body>
+
 	<ul class = "Nu">
  		<li class = "Nl"><a class="Na" href="/instructions">Instructions</a></li>
    		<li class = "Nll"><a class="Na" href="/logout">Logout</a></li>
    		<li class = "Nll"><a class="Na" href="/settings"><i class="material-icons" style="font-size:23px">settings</i></a></li>
     	
 	</ul>
-
+	
 	<div class="instD">
-		<h2 class="instH">Overview for {{className}} - {{courseTitle}}</h2>
-
-			<h3 class="inst">{{courseOverview}}</h3>
-
+	<h1 class="instH">User Account Settings</h1>
 	</div>
 
-	<a href="/quiz"><button id="playGame" type="button">PLAY GAME</button><a href="/quiz">
+	<a href="/changePassword"><button id="playGame" type="button">Set new password</button></a>
+	
 </body>
 </html>

@@ -342,6 +342,20 @@ def overview(classNum):
 
 	return redirect(url_for('index'))
 
+#Settings
+@app.route('/settings')
+def settings(): 
+	if 'username' in session:
+		return render_template('settings.html')
+	return redirect(url_for('login'))
+
+#change password
+@app.route('/changePassword')
+def changePassword(): 
+	if 'username' in session:
+		return render_template('changePassword.html')
+	return redirect(url_for('login'))
+
 
 #Logout
 @app.route('/logout')
