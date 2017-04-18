@@ -1,10 +1,14 @@
 * {
-    padding: 0; margin: 0
+    padding: 0; margin: 0;
+    font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+
 }
 
 .gameTitle{
 	text-align: center;
 	font-size: 50px;
+    padding: .5em
+
 }
 .error{
     font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
@@ -62,24 +66,27 @@ body{
     /*background-color: rgb(250, 235, 215);*/
     /*background: #466368; */ /*this is good and goes together with the next line*/
     /*background: radial-gradient(#648880, #293f50);*/
-    background: radial-gradient(#37b2b5, #293f50);
+    background: #F7F3ED
 
 }
 input[type="submit"]{
+    margin: 0 auto;
 
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
-	margin-top: 1em;
     background-color: #333;
     border: none;
     color: white;
-    float: left;
     font-size: 1em;
     padding: 1em;
 	width: 30%;
-	
+    text-align: center;	
 }
 input[type="submit"]:hover{
     background-color: #111;
+}
+input[type="radio"]{
+    margin: 1em;
+    margin-left: 3em;
 }
 /*input[type="button"]{ */
 /*#button{
@@ -98,15 +105,14 @@ input[type="submit"]:hover{
     
 } */
 #button{
-    float: left;
     font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
-    margin-top: 1em;
     background-color: #333;
     border: none;
     color: white;
-    float: left;
     font-size: 1em;
     padding: 1em;
+    margin: 0 auto;
+    text-align: center;
     width: 30%;
 }
 button:hover {
@@ -127,11 +133,16 @@ button:hover {
 .questions{
 	/*color: rgb(255, 140, 0);*/
 	color: black;
-	margin-left: 20px;
+	margin-left: 2.5em;
 	font-size: 20px;
+    padding: .5em;
+
 }
 .correct{
 	color: #00ff00;
+}
+label {
+    padding-left: .5em;
 }
 #rankquiz{
     text-align: center;
@@ -141,4 +152,12 @@ button:hover {
     background-color: #fff;
     
     
+}
+.sub {
+    margin: 0 auto;
+    text-align: center;
+    padding: 1em;
+}
+h3{
+    padding-bottom: .5em;
 }
