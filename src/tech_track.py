@@ -172,7 +172,7 @@ def levelPage2():
 
 		cursor.execute("SELECT * from Users where emailAccount='" + session['username'] + "'")
 		data = cursor.fetchone()
-		print(data);
+		#print(data);
 
 		status180 = data[3]
 		status240 = data[4]
@@ -265,8 +265,8 @@ def levelPage3():
 		status307=data[10]
 		status448 = data[11]
 		status456 = data[12]
-		status426 = data[13]
-		status422 = data[14]
+		status426 = data[14]
+		status422 = data[13]
 
 		if (status180 is 0) or (status240 is 0) or (status250 is 0) or (status251 is 0) or (status314 is 0) or (status334 is 0) or (status381 is 0) or (status307 is 0):
 			status448 = 2
@@ -347,6 +347,16 @@ def overview(classNum):
 
 
 #Logout
+
+@app.route('/lastCourseEntered')
+def lastCourseEntered():
+	if 'username' in session:
+		if 'lastCourseEntered' in session:
+			return jsonify(session['lastCourseEntered'])
+		else:
+			return jsonify("None")
+	return redirect(url_for('login'))
+
 @app.route('/logout')
 def logout(): 
 	session.pop('username', None)
@@ -368,6 +378,7 @@ def quiz():
 	grades = None
 	showSubmit = None
 	course = None
+	rank = None
 
 	if 'username' in session:
 
@@ -385,7 +396,7 @@ def quiz():
 			questions.append(row)
 
 		if request.method == 'POST':
-			print request.form
+			#print request.form
 
 			if (len(request.form) != 7):
 				error = "Please answer all of the questions."
@@ -406,24 +417,44 @@ def quiz():
 
 				rank = request.form["rankquiz"]
 
+				total = score + 3*int(rank)
+
 				cursor.execute("SELECT courseId FROM courses WHERE courseAbbreviation='" + course +"'")
 				courseId = cursor.fetchone()
 
+				cursor.execute("SELECT courseConcentration FROM courses WHERE courseAbbreviation='" + course +"'")
+				courseConcentration = cursor.fetchone()
+
 				cursor.execute("DELETE FROM results WHERE emailAccount='" + session['username'] + "' and courseId=" + str(courseId[0]))
 
-				cursor.execute("INSERT INTO results (emailAccount, courseId, score, rank) VALUES ('" + session['username'] + "'," + str(courseId[0]) + "," + str(score) + "," + str(rank) +")")
+				#print "INSERT INTO results (emailAccount, courseId, courseConcentration, score, rank, total) VALUES ('" + session['username'] + "'," + str(courseId[0]) + ",'" + str(courseConcentration[0]) + "'," + str(score) + "," + str(rank) + "," + str(total) + ")"
+				cursor.execute("INSERT INTO results (emailAccount, courseId, courseConcentration, score, rank, total) VALUES ('" + session['username'] + "'," + str(courseId[0]) + ",'" + str(courseConcentration[0]) + "'," + str(score) + "," + str(rank) + "," + str(total) + ")")
 				cursor.execute("UPDATE users SET " + course.lower() + "Completed=1 WHERE emailAccount='" + session['username'] + "'")
 				conn.commit()
 
+				session['lastCourseEntered'] = session['currentCourse']
 				session.pop('currentCourse', None)
-
-			return render_template('quiz.html', questions=questions, error=error, answers=answers, grades=grades, showSubmit=showSubmit)
+				
+				rank = int(rank)
+			return render_template('quiz.html', questions=questions, error=error, answers=answers, grades=grades, rank=rank, showSubmit=showSubmit)
 		else:
 			showSubmit = True
-			return render_template('quiz.html', questions=questions, error=error, answers=answers, grades=grades, showSubmit=showSubmit)
+			return render_template('quiz.html', questions=questions, error=error, answers=answers, grades=grades, rank=rank, showSubmit=showSubmit)
 	return redirect(url_for('login'))
 
+@app.route('/summary', methods=['GET'])
+def summary():
+	if 'username' in session:
 
+		conn = mysql.connect()
+		cursor = conn.cursor()
+
+		#select the maximum score from the results table
+		cursor.execute("SELECT courseConcentration FROM results WHERE total = (SELECT MAX(total) FROM (SELECT * FROM results WHERE courseId > 4) Temp) and emailAccount='" + session['username'] + "'");
+		courseConcentration = cursor.fetchone()
+
+		return render_template('summary.html', courseConcentration = courseConcentration[0])
+	return redirect(url_for('login'))
 
 #Secret Key
 app.secret_key = 'A0Zr98j/3yX R~'
