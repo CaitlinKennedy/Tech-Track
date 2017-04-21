@@ -25,6 +25,9 @@
 		document.body.appendChild(renderer.view);
 		var stage = new PIXI.Container();
 		var x = 0
+		var velocity = 30.0
+		var count = 1
+		var girl
 		var pause = false
 		PIXI.loader
 		  .add([
@@ -42,7 +45,7 @@
 		  	"static/Images/level2right.png",
 		  	"static/Images/level3right.png"
 		  ])
-		  .load(setup);
+		  .load(start);
 
 
 		renderer.render(stage);
@@ -51,16 +54,19 @@
 		renderer.autoResize = true;
 		renderer.resize(window.innerWidth, window.innerHeight - 47);
 		var obj;
-		$.getJSON('/levelPage1', function(data) {
-    		//data is the JSON string
-    		obj = JSON.parse(JSON.stringify(data));
-    		console.log(obj)
-		});
+		function start() {
+			$.getJSON('/levelPage1', function(data) {
+	    		//data is the JSON string
+	    		obj = JSON.parse(JSON.stringify(data));
+	    		console.log(obj)
+	    		setup()
+			});
+		}
 
 
 		function setup() {		
 			pause = false	
-		 	var girl = new PIXI.Sprite(
+		 	girl = new PIXI.Sprite(
 		    	PIXI.loader.resources["static/Images/girl.png"].texture
 			);
 			var wall = new PIXI.Sprite(
@@ -149,7 +155,6 @@
 				doors[i].x = 150+ i*300
 
 				
-				//later change to json
 				classC = obj.classes[i]
 
 				//classC.name
@@ -252,6 +257,7 @@ function onKeyDown(key) {
     					obj = JSON.parse(JSON.stringify(data));
     					console.log(obj)
     					x = 0
+    					count++
     					remove()
     					setup()
 					});
@@ -267,13 +273,18 @@ function onKeyDown(key) {
     					obj = JSON.parse(JSON.stringify(data));
     					console.log(obj)
     					x = 0
+    					count++
     					remove()
     					setup()
 					});
 				}
 
 				else if (girl.x + 80 < w) {
-					girl.x += 30
+					girl.x += velocity / count
+				}
+
+				if ( girl.x + girl.width/2 > wall.width - 190 && girl.x + girl.width/2 < wall.width - 190 + emptypedestal.width && girl.y + girl.height/2 > floor.y && girl.y + girl.height/2 < floor.y + emptypedestal.height) {
+					console.log("finished")
 				}
 
 			}
@@ -292,6 +303,7 @@ function onKeyDown(key) {
     					obj = JSON.parse(JSON.stringify(data));
     					console.log(obj)
     					x = 1250
+    					count++
     					remove()
     					setup()
 					});
@@ -308,13 +320,14 @@ function onKeyDown(key) {
     					obj = JSON.parse(JSON.stringify(data));
     					console.log(obj)
     					x = 1250
+    					count++
     					remove()
     					setup()
 					});
 				}
 
 				else if (girl.x + girl.width > 0 ) {
-					girl.x -= 30
+					girl.x -= velocity/count
 
 				}
 
@@ -323,7 +336,7 @@ function onKeyDown(key) {
 			else if (key.keyCode === 38) {
 				
 				if (girl.y + girl.height > wall.height) {
-					girl.y -= 15
+					girl.y -= velocity * .5 / count
 				}
 
 				var m;
@@ -340,7 +353,7 @@ function onKeyDown(key) {
 
 			else if (key.keyCode === 40) {
 				if (girl.y + girl.height < h) {
-					girl.y +=15
+					girl.y += velocity * .5 / count
 				}
 
 				
