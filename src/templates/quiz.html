@@ -74,11 +74,31 @@
 					<p>Please rank the course!&#9786</p>
 					<!--<input type="text" id="rankquiz" placeholder="Rank"> / 5 -->
 					<select name="rankquiz">
-  						<option value="1">1</option>
-  						<option value="2">2</option>
- 						<option value="3">3</option>
-  						<option value="4">4</option>
-  						<option value="5">5</option>
+						{% if rank == 1 %}
+							<option selected value="1">1</option>
+						{% else %}
+  							<option value="1">1</option>
+						{% endif %}
+  						{% if rank == 2 %}
+							<option selected value="2">2</option>
+						{% else %}
+  							<option value="2">2</option>
+						{% endif %}
+						{% if rank == 3 %}
+							<option selected value="3">3</option>
+						{% else %}
+  							<option value="3">3</option>
+						{% endif %}
+						{% if rank == 4 %}
+							<option selected value="4">4</option>
+						{% else %}
+  							<option value="4">4</option>
+						{% endif %}
+						{% if rank == 5 %}
+							<option selected value="5">5</option>
+						{% else %}
+  							<option value="5">5</option>
+						{% endif %}
 					</select> / 5
 				</div>
 
