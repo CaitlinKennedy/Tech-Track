@@ -1,13 +1,41 @@
+
+body{
+    
+    margin: 0 auto;
+    background-color: #F7F3ED;
+    background-repeat: no-repeat;
+    background-size: 100% 770px;
+}
+
 .heading{
     text-align: center;
-    font-size: 30px;
+    display: block;
+    font-size: 2em;
+    font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+    color: #F7ECD9;
+    margin: 0 0;
+    padding: 0 0;
+
 
 }
 .text{
 
     text-align: center;
-    font-size: 30px;
+    display: block;
+    font-size: 2em;
+    font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+    color: #F7ECD9;
+    padding: .2em 1em;
+    padding-bottom: 0em;
 
+
+}
+
+img {
+    margin: auto;
+    margin-top: 3em;
+    width: 50%;
+    display: block;
 }
 .Nu {
     list-style-type: none;
@@ -41,8 +69,8 @@
 #button{
     
     font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
-    margin-top: 1em;
-    background-color: #333;
+    margin-top: 0em;
+    background-color: #c12d22;
     border: none;
     color: white;
     /*float: left;*/
@@ -50,6 +78,25 @@
     padding: 1em;
     /*width: 30%;*/
     width: 22%;
+}
+
+.box1 {
+    background-color: #333333;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    margin-top: 3em;
+    border: .1em solid #c12d22;
+    border-radius: 4px;
+}
+.box2 {
+    background-color: #333333;
+    opacity: .9;
+    margin-left: 25%;
+    margin-right: 25%;
+    padding-bottom: 2.5em;
+
 }
 button:hover {
 

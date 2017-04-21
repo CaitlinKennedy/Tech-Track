@@ -4,19 +4,25 @@
 <head>
 	<title>Graduation Page</title>
 	<link rel="stylesheet" type="text/css" href="/static/summary.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 </head>
 <body>
 	<ul class = "Nu">
  		<li class = "Nl"><a class="Na" href="/instructions">Instructions</a></li>
+ 		<li class = "Nl"><a class="Na" href="/levels">Level Page</a></li>
    		<li class = "Nll"><a class="Na" href="/logout">Logout</a></li>
    		<!-- <li class = "Nll"><a class="Na" href="/settings"><i class="material-icons" style="font-size:23px">settings</i></a></li> -->	
 	</ul>
 
-	
+	<img src="/static/Images/TechTrackLogo.png">
+	<div class="box1">
 	<div class="heading">
 		<h1>Congratulations!</h1>
 	</div>
+	</div>
 
+	<div class="box2">
 	<div class="text">
 		<h3>Your recommended concentration is {{courseConcentration}}!</h3>
 
@@ -26,6 +32,8 @@
 	<div class="wrap">
 		<a href="/logout"><button id="button" type="button">EXIT</button><a href="/logout">
 	</div>
+	</div>
+
 
 </body>
 </html>

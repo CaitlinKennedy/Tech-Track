@@ -283,8 +283,10 @@ function onKeyDown(key) {
 					girl.x += velocity / count
 				}
 
-				if ( girl.x + girl.width/2 > wall.width - 190 && girl.x + girl.width/2 < wall.width - 190 + emptypedestal.width && girl.y + girl.height/2 > floor.y && girl.y + girl.height/2 < floor.y + emptypedestal.height) {
-					console.log("finished")
+				if (p && girl.x + girl.width/2 > wall.width - 190 && girl.x + girl.width/2 < wall.width - 190 + emptypedestal.width && girl.y + girl.height/2 > floor.y && girl.y + girl.height/2 < floor.y + emptypedestal.height) {
+					var s = '/summary'
+						console.log(s)
+						location.href = s
 				}
 
 			}
