@@ -22,7 +22,7 @@
 }
 
 .Nll {
-    float: right;
+	float: right;
 }
 
 .Na {
@@ -36,7 +36,7 @@
 
 .wrap{
     
-    text-align: center;
+	text-align: center;
 }
 #button{
     
@@ -60,9 +60,9 @@ body{
     /*background: #003973;  
 background: -webkit-linear-gradient(to left, #E5E5BE, #003973);  
 background: linear-gradient(to left, #E5E5BE, #003973); */
-background: #603813;  
+/*background: #603813;  
 background: -webkit-linear-gradient(to left, #b29f94, #603813); 
-background: linear-gradient(to left, #b29f94, #603813);
+background: linear-gradient(to left, #b29f94, #603813);*/
 /*this top*/
 /*background: #34e89e;  
 background: -webkit-linear-gradient(to left, #0f3443, #34e89e);  
@@ -70,6 +70,6 @@ background: linear-gradient(to left, #0f3443, #34e89e); */
 /*background: #200122;  
 background: -webkit-linear-gradient(to left, #6f0000, #200122);  
 background: linear-gradient(to left, #6f0000, #200122); */
-
+background: #F7F3ED;
 
 }
