@@ -33,27 +33,27 @@
 					<h3>{{loop.index}}. {{question[0]}}</h3>
 					<ul>
 						{% if answers[loop.index0] == 1 %}
-							<input type="radio" name="q{{loop.index}}" checked value="1">{{question[1]}}<br>
+							<input type="radio" name="q{{loop.index}}" checked value="1"><label>{{question[1]}}</label><br>
 						{% else %}
-							<input type="radio" name="q{{loop.index}}" value="1">{{question[1]}}<br>
+							<input type="radio" name="q{{loop.index}}" value="1"><label>{{question[1]}}</label><br>
 						{% endif %}
 						
 						{% if answers[loop.index0] == 2 %}
-							<input type="radio" name="q{{loop.index}}" checked value="2">{{question[2]}}<br>
+							<input type="radio" name="q{{loop.index}}" checked value="2"><label>{{question[2]}}</label><br>
 						{% else %}
-							<input type="radio" name="q{{loop.index}}" value="2">{{question[2]}}<br>
+							<input type="radio" name="q{{loop.index}}" value="2"><label>{{question[2]}}</label><br>
 						{% endif %}
 
 						{% if answers[loop.index0] == 3 %}
-							<input type="radio" name="q{{loop.index}}" checked value="3">{{question[3]}}<br>
+							<input type="radio" name="q{{loop.index}}" checked value="3"><label>{{question[3]}}</label><br>
 						{% else %}
-							<input type="radio" name="q{{loop.index}}" value="3">{{question[3]}}<br>
+							<input type="radio" name="q{{loop.index}}" value="3"><label>{{question[3]}}</label><br>
 						{% endif %}
 
 						{% if answers[loop.index0] == 4 %}
-							<input type="radio" name="q{{loop.index}}" checked value="4">{{question[4]}}<br>
+							<input type="radio" name="q{{loop.index}}" checked value="4"><label>{{question[4]}}</label><br>
 						{% else %}
-							<input type="radio" name="q{{loop.index}}" value="4">{{question[4]}}<br>
+							<input type="radio" name="q{{loop.index}}" value="4"><label>{{question[4]}}</label><br>
 						{% endif %}
 					</ul>
 
@@ -69,7 +69,7 @@
 				{% endfor %}
 
 				<!--I added this div for rank -->
-				<div>
+				<div class="sub">
 
 					<p>Please rank the course!&#9786</p>
 					<!--<input type="text" id="rankquiz" placeholder="Rank"> / 5 -->
@@ -105,7 +105,7 @@
 				{% if showSubmit %}
 					<!-- <input type="submit" name="submit" value="SUBMIT"><br> --> 
 					<!--I commented this out the top line and added the line below -->
-					<input class = "Nl" type="submit" name="submit" value="SUBMIT">
+					<div class="sub"><input type="submit" name="submit" value="SUBMIT"></div>
 				{% else %}
 
 					<a href="/levels"><button id="button" type="button">LEVEL PAGE</button><a href="/levels">

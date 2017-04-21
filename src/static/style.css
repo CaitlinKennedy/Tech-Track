@@ -1,7 +1,7 @@
 body{
 	
 	margin: 0 auto;
-	background-color: #efd6d0;
+	background-color: #F7F3ED;
 	background-repeat: no-repeat;
 	background-size: 100% 770px;
 }
@@ -26,13 +26,27 @@ img {
 }
 h2{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
-	margin-top: 2em;
+	margin-top: .25em;
 	text-align: center;
-	color: #c12d22;
+	color: #F7ECD9;
 	font-size: 40px;
 	margin-bottom: 10px;
 }
-
+.box1 {
+	background-color: #333333;
+	margin-left: 25%;
+	margin-right: 25%;
+	padding-top: .25em;
+	padding-bottom: .25em;
+	margin-top: 3em;
+}
+.box2 {
+	background-color: #333333;
+	opacity: .9;
+	margin-left: 25%;
+	margin-right: 25%;
+	padding-bottom: 6em;
+}
 input[type="text"]{
 
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
@@ -41,7 +55,7 @@ input[type="text"]{
 	width: 300px;
 	font-size: 2em;
 	margin-bottom: 20px;
-	background-color: #e2b7ac;
+	background-color: #F7F3ED;
 	text-align: left;
 	color: #c12d22; 
 	border: .1em solid #c12d22;
@@ -56,7 +70,7 @@ input[type="password"]{
 	width: 300px;
 	font-size: 2em;
 	margin-bottom: 5px;
-	background-color: #e2b7ac;
+	background-color: #F7F3ED;
 	text-align: left;
 	color: #c12d22;
 	border: .1em solid #c12d22;
@@ -75,8 +89,8 @@ input[type="submit"]{
 	margin-top: 1em;
 	background-color: #c12d22;
     border: none;
-    color: white;
-    margin: 4px 2px;
+    color: #F7ECD9;
+    margin: 1.4em .4em;
     font-size: 1em;
     padding: 1em;
 	text-align: center;
@@ -107,49 +121,79 @@ input[type="submit"]{
 a{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	color: #c12d22;
+	text-decoration: none;
 }
 
 .instD{
-	background-color: #7f1c15;
-	margin: 2em;
-	padding: 1em;
+	background-color: #F7F3ED;
 }
 
 .instH{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
-	color: white;
+	padding: .5em;
+	color: #F7F3ED;
+
+}
+
+.instH1{
+	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+	padding: .5em;
+	color: #c12d22;
 
 }
 
 .inst{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
-	color: white;
+	color: #F7F3ED;
 	margin-left: 3em;
 	margin-right: 3em;
+	padding: .5em;
 }
 
+.box3 {
+	border-color: #c12d22;
+	border-width: 2px;
+	background-color: #333333;
+	opacity: .9;
+	margin-left: 15%;
+	margin-right: 15%;
+	padding-bottom: .5em;
+}
+
+.box4 {
+	background-color: #333333;
+	margin-left: 15%;
+	margin-right: 15%;
+	padding-top: .25em;
+	padding-bottom: .25em;
+	margin-top: 1.5em;
+	border: 1px solid #c12d22;
+}
 #playGame{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
-	background-color: #c12d22;
-	color: white;
+	background-color: #333333;
+	color: #F7F3ED;
 	width: 50%;
 	display: block;
 	text-align: center;
 	font-size: 3em;
 	margin:0 auto;
 	margin-bottom: 3em;
+	margin-top: 1em;
 }
 
 #playGame:hover{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
-	background-color: #7f1c15;
-	color: white;
+	background-color: #c12d22;
+	opacity: .9;
+	color: #F7F3ED;
 	width: 50%;
 	font-size: 3em;
 	display: block;
 	text-align: center;
 	margin:0 auto;
 	margin-bottom: 3em;
+	margin-top: 1em;
 }
 
 h1{
