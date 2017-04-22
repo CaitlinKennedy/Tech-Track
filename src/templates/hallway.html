@@ -55,11 +55,19 @@
 		renderer.resize(window.innerWidth, window.innerHeight - 47);
 		var obj;
 		function start() {
-			$.getJSON('/levelPage1', function(data) {
-	    		//data is the JSON string
-	    		obj = JSON.parse(JSON.stringify(data));
-	    		console.log(obj)
-	    		setup()
+			$.getJSON('lastCourseEntered', function(data) {
+				var level = 1;
+				if (data == "CS307" || data == "CS314" || data == "CS334" || data =="CS381") {
+					level = 2;
+				}
+				else if (data == "CS422" || data == "CS426" || data == "CS448" || data == "CS456") {
+					level = 3;
+				}
+				var url = '/levelPage' + level 
+				$.getJSON(url, function(data) {
+					obj = JSON.parse(JSON.stringify(data));
+					setup();
+				});
 			});
 		}
 

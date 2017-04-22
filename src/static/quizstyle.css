@@ -57,7 +57,7 @@
 
 /* Change the link color to #111 (black) on hover */
 a:hover {
-    background-color: #111;
+    background-color: #c12d22;
 }
 
 /*mine*/
@@ -82,7 +82,7 @@ input[type="submit"]{
     text-align: center;	
 }
 input[type="submit"]:hover{
-    background-color: #111;
+    background-color: #c12d22;
 }
 input[type="radio"]{
     margin: 1em;
@@ -104,6 +104,10 @@ input[type="radio"]{
     
     
 } */
+.lev {
+    text-align: center;
+    margin: auto;
+}
 #button{
     font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
     background-color: #333;
@@ -114,9 +118,10 @@ input[type="radio"]{
     margin: 0 auto;
     text-align: center;
     width: 30%;
+    display: block;
 }
 button:hover {
-    background-color: #111;
+    background-color: #c12d22;
 }
 /*input[type="button"]:hover{
     background-color: #111;
