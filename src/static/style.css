@@ -17,7 +17,9 @@ body{
 	color: white;
 	
 }
-
+.space {
+	padding: 3em;
+}
 img {
 	margin: auto;
 	margin-top: 3em;
@@ -28,7 +30,7 @@ h2{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	margin-top: .25em;
 	text-align: center;
-	color: #F7ECD9;
+	color: #F7F3ED;
 	font-size: 40px;
 	margin-bottom: 10px;
 }
@@ -40,12 +42,28 @@ h2{
 	padding-bottom: .25em;
 	margin-top: 3em;
 }
+.box6 {
+	background-color: #333333;
+	margin-left: 15%;
+	margin-right: 15%;
+	padding-top: .25em;
+	padding-bottom: .25em;
+	margin-top: 3em;
+}
+
 .box2 {
 	background-color: #333333;
 	opacity: .9;
 	margin-left: 25%;
 	margin-right: 25%;
-	padding-bottom: 8em;
+	padding-bottom: 10em;
+}
+.box5 {
+	background-color: #333333;
+	opacity: .9;
+	margin-left: 25%;
+	margin-right: 25%;
+	padding-bottom: 6em;
 }
 input[type="text"]{
 
@@ -169,6 +187,10 @@ a{
 	margin-top: 1.5em;
 	border: 1px solid #c12d22;
 }
+.form-input {
+	text-align: center;
+	padding-top : 2em;
+}
 #playGame{
 	font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
 	background-color: #333333;
@@ -216,4 +238,23 @@ h1{
 	margin-bottom: .5em;
 	margin-top: .5em;
 	margin-left: 23em;
+}
+#line {
+	height: 1px;
+	width: 70%;
+	margin-left: 15%;
+	background-color: #c12d22;
+}
+#listbutton{
+    font-family: 'Roboto', "Trebuchet MS", Arial, sans-serif;
+    background-color: #333;
+    border: none;
+    color: #F7F3ED;
+    opacity: .9;
+    font-size: 2em;
+    padding: 1em;
+    margin: 0 auto;
+    text-align: center;
+    width: 70%;
+    display: block;
 }
