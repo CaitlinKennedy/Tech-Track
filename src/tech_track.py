@@ -347,6 +347,52 @@ def overview(classNum):
 
 	return redirect(url_for('index'))
 
+#Settings
+@app.route('/settings')
+def settings(): 
+	if 'username' in session:
+		return render_template('settings.html')
+	return redirect(url_for('login'))
+
+#change password html
+@app.route('/changePassword')
+def changePassword(): 
+	if 'username' in session:
+		return render_template('changePassword.html')
+	return redirect(url_for('login'))
+#change/update password
+@app.route('/resetPassword', methods=['GET', 'POST'])
+def resetPassword():
+    error = None
+    if request.method == 'POST':
+        newPassword = request.form['newPassword']
+        checkPassword = request.form['checkPassword']
+        #email = session['username']
+        #print(email)
+        
+        if newPassword == checkPassword:
+
+
+			conn = mysql.connect()
+			cursor = conn.cursor()
+	    
+			#cursor.execute("SELECT * from Users where emailAccount='" + emailAccount + "")
+			cursor.execute("UPDATE Users SET password ='" + newPassword + "' WHERE emailAccount = '" + session['username'] + "'")
+			conn.commit()
+
+			#data = cursor.fetchone()
+			#if data is None:
+			return redirect(url_for('settings'))
+
+        else: 
+            error = "Your passwords don't match!"
+
+    #return "You are already registered" #render html for register page and send error message
+	return render_template('changePassword.html', error=error)
+
+    #return "You are already registered" #render html for register page and send error messag
+
+
 
 #Logout
 
