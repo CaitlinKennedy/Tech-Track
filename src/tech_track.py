@@ -377,7 +377,7 @@ def resetPassword():
 			cursor = conn.cursor()
 	    
 			#cursor.execute("SELECT * from Users where emailAccount='" + emailAccount + "")
-			cursor.execute("UPDATE Users SET password ='" + newPassword + "' WHERE emailAccount = '" + session['username'] + "'")
+			cursor.execute("UPDATE Users SET password =%s WHERE emailAccount = %s", (newPassword, session['username']))
 			conn.commit()
 
 			#data = cursor.fetchone()
