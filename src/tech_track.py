@@ -360,22 +360,30 @@ def changePassword():
 	if 'username' in session:
 		return render_template('changePassword.html')
 	return redirect(url_for('login'))
+
+#reset game html
+@app.route('/resetGame')
+def resetGame(): 
+	if 'username' in session:
+		return render_template('resetGame.html')
+	return redirect(url_for('login'))
+
 #change/update password
 @app.route('/resetPassword', methods=['GET', 'POST'])
 def resetPassword():
-    error = None
-    if request.method == 'POST':
-        newPassword = request.form['newPassword']
-        checkPassword = request.form['checkPassword']
+	error = None
+	if request.method == 'POST':
+		newPassword = request.form['newPassword']
+		checkPassword = request.form['checkPassword']
         #email = session['username']
         #print(email)
         
-        if newPassword == checkPassword:
+		if newPassword == checkPassword:
 
 
 			conn = mysql.connect()
 			cursor = conn.cursor()
-	    
+
 			#cursor.execute("SELECT * from Users where emailAccount='" + emailAccount + "")
 			cursor.execute("UPDATE Users SET password =%s WHERE emailAccount = %s", (newPassword, session['username']))
 			conn.commit()
@@ -384,15 +392,33 @@ def resetPassword():
 			#if data is None:
 			return redirect(url_for('settings'))
 
-        else: 
-            error = "Your passwords don't match!"
+		else: 
+			error = "Your passwords don't match!"
 
     #return "You are already registered" #render html for register page and send error message
 	return render_template('changePassword.html', error=error)
 
     #return "You are already registered" #render html for register page and send error messag
 
+#Reset progress in the game to be like  new user
+@app.route('/resetProgress', methods=['GET', 'POST'])
+def resetProgress():
+	if request.method == 'GET':
+		conn = mysql.connect()
+		cursor = conn.cursor()
 
+		emailAccount = session['username']
+
+		cursor.execute("SELECT password from Users where emailAccount=%s", emailAccount)
+		data = cursor.fetchone()
+
+		password = data[0]
+
+		cursor.execute("DELETE from Users where emailAccount =%s limit 1" , emailAccount)
+		cursor.execute('''INSERT INTO Users (emailAccount, password, isNewUser, cs180Completed, cs240Completed, cs250Completed, cs251Completed, cs314Completed, cs334Completed, cs381Completed, cs307Completed, cs448Completed, cs456Completed, cs422Completed, cs426Completed) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',(emailAccount, password, True, False, False, False, False, False, False, False, False, False, False, False, False))
+		conn.commit()
+
+	return redirect(url_for('settings'))
 
 #Logout
 
