@@ -50,7 +50,7 @@ def login():
 
 		#Check database.
 		cursor = mysql.connect().cursor()
-		cursor.execute("SELECT * from Users where emailAccount='" + username + "' and password='" + password + "'")
+		cursor.execute("SELECT * from Users where emailAccount=%s and password=%s", (username, password))
 		data = cursor.fetchone()
 
 		if data is None:
@@ -58,6 +58,7 @@ def login():
 		else:
 			#Session.
 			session['username'] = request.form['username']
+			session['lastCourseEntered'] = None
 			return redirect(url_for('instructions'))
 
 	return render_template('login.html', error=error)
@@ -80,7 +81,7 @@ def register():
         conn = mysql.connect()
         cursor = conn.cursor()
     
-        cursor.execute("SELECT * from Users where emailAccount='" + emailAccount + "'")
+        cursor.execute("SELECT * from Users where emailAccount=%s", (emailAccount))
         data = cursor.fetchone()
         if data is None:
             #this password is unique so add it to the database
@@ -88,6 +89,7 @@ def register():
             conn.commit()
 
             session['username'] = request.form['username']
+            session['lastCourseEntered'] = None
 
             return redirect(url_for('instructions'))
         else: 
@@ -104,7 +106,7 @@ def levelPage1():
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute("SELECT * from Users where emailAccount='" + session['username'] + "'")
+		cursor.execute("SELECT * from Users where emailAccount=%s", (session['username']))
 		data = cursor.fetchone()
 
 		status180 = data[3]
@@ -170,7 +172,7 @@ def levelPage2():
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute("SELECT * from Users where emailAccount='" + session['username'] + "'")
+		cursor.execute("SELECT * from Users where emailAccount=%s", (session['username']))
 		data = cursor.fetchone()
 		#print(data);
 
@@ -252,7 +254,7 @@ def levelPage3():
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute("SELECT * from Users where emailAccount='" + session['username'] + "'")
+		cursor.execute("SELECT * from Users where emailAccount=%s", (session['username']))
 		data = cursor.fetchone()
 
 		status180 = data[3]
@@ -338,7 +340,7 @@ def overview(classNum):
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute("SELECT courseName,courseOverview from courses where courseAbbreviation='" + classNoSpace + "'")
+		cursor.execute("SELECT courseName,courseOverview from courses where courseAbbreviation=%s", (classNoSpace))
 		data = cursor.fetchone()
 
 		return render_template('overview.html', className = classNum, courseTitle = data[0], courseOverview = data[1])
@@ -375,7 +377,7 @@ def resetPassword():
 			cursor = conn.cursor()
 	    
 			#cursor.execute("SELECT * from Users where emailAccount='" + emailAccount + "")
-			cursor.execute("UPDATE Users SET password ='" + newPassword + "' WHERE emailAccount = '" + session['username'] + "'")
+			cursor.execute("UPDATE Users SET password =%s WHERE emailAccount = %s", (newPassword, session['username']))
 			conn.commit()
 
 			#data = cursor.fetchone()
@@ -435,7 +437,7 @@ def quiz():
 
 		conn = mysql.connect()
 		cursor = conn.cursor()
-		cursor.execute("SELECT questionString, option1, option2, option3, option4, correctAnswer, courseName FROM courses join questions on questions.courseId=courses.courseId where courses.courseAbbreviation='" + course + "'")
+		cursor.execute("SELECT questionString, option1, option2, option3, option4, correctAnswer, courseName FROM courses join questions on questions.courseId=courses.courseId where courses.courseAbbreviation=%s", (course))
 
 		questions = []
 		for row in cursor:
@@ -465,17 +467,17 @@ def quiz():
 
 				total = score + 3*int(rank)
 
-				cursor.execute("SELECT courseId FROM courses WHERE courseAbbreviation='" + course +"'")
+				cursor.execute("SELECT courseId FROM courses WHERE courseAbbreviation=%s", (course))
 				courseId = cursor.fetchone()
 
-				cursor.execute("SELECT courseConcentration FROM courses WHERE courseAbbreviation='" + course +"'")
+				cursor.execute("SELECT courseConcentration FROM courses WHERE courseAbbreviation=%s", (course))
 				courseConcentration = cursor.fetchone()
 
-				cursor.execute("DELETE FROM results WHERE emailAccount='" + session['username'] + "' and courseId=" + str(courseId[0]))
+				cursor.execute("DELETE FROM results WHERE emailAccount=%s and courseId=%s", (session['username'], str(courseId[0])))
 
 				#print "INSERT INTO results (emailAccount, courseId, courseConcentration, score, rank, total) VALUES ('" + session['username'] + "'," + str(courseId[0]) + ",'" + str(courseConcentration[0]) + "'," + str(score) + "," + str(rank) + "," + str(total) + ")"
-				cursor.execute("INSERT INTO results (emailAccount, courseId, courseConcentration, score, rank, total) VALUES ('" + session['username'] + "'," + str(courseId[0]) + ",'" + str(courseConcentration[0]) + "'," + str(score) + "," + str(rank) + "," + str(total) + ")")
-				cursor.execute("UPDATE users SET " + course.lower() + "Completed=1 WHERE emailAccount='" + session['username'] + "'")
+				cursor.execute("INSERT INTO results (emailAccount, courseId, courseConcentration, score, rank, total) VALUES (%s, %s, %s, %s, %s, %s)", (session['username'], str(courseId[0]), str(courseConcentration[0]), str(score), str(rank), str(total)))
+				cursor.execute("UPDATE users SET "+course.lower()+"Completed=1 WHERE emailAccount=%s", (session['username']))
 				conn.commit()
 
 				session['lastCourseEntered'] = session['currentCourse']
@@ -496,7 +498,7 @@ def summary():
 		cursor = conn.cursor()
 
 		#select the maximum score from the results table
-		cursor.execute("SELECT courseConcentration FROM results WHERE total = (SELECT MAX(total) FROM (SELECT * FROM results WHERE courseId > 4) Temp) and courseId > 4 and emailAccount='" + session['username'] + "'");
+		cursor.execute("SELECT courseConcentration FROM results WHERE total = (SELECT MAX(total) FROM (SELECT * FROM results WHERE courseId > 4) Temp) and courseId > 4 and emailAccount=%s", (session['username']));
 		courseConcentration = cursor.fetchone()
 
 		return render_template('summary.html', courseConcentration = courseConcentration[0])
