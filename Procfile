@@ -1,1 +1,1 @@
-web: gunicorn -k gevent tech_track:app
+web: gunicorn tech_track:app
