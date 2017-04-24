@@ -1,1 +1,1 @@
-web: gunicorn src/tech_track:app
+web: gunicorn src.tech_track:app
