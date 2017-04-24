@@ -340,10 +340,10 @@ def overview(classNum):
 		conn = mysql.connect()
 		cursor = conn.cursor()
 
-		cursor.execute("SELECT courseName,courseOverview from courses where courseAbbreviation=%s", (classNoSpace))
+		cursor.execute("SELECT courseName,courseOverview1, courseOverview2, courseOverview3,courseOverview4, courseOverview5 from courses where courseAbbreviation=%s", (classNoSpace))
 		data = cursor.fetchone()
 
-		return render_template('overview.html', className = classNum, courseTitle = data[0], courseOverview = data[1])
+		return render_template('overview.html', className = classNum, courseTitle = data[0], courseOverview1 = data[1], courseOverview2 = data[2], courseOverview3 = data[3], courseOverview4 = data[4], courseOverview5 = data[5])
 
 	return redirect(url_for('index'))
 
